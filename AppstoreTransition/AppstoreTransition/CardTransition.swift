@@ -44,7 +44,7 @@ public class TransitionSettings {
 }
 
 public final class CardTransition: NSObject, UIViewControllerTransitioningDelegate {
-
+    
     struct Params {
         let fromCardFrame: CGRect
         let fromCardFrameWithoutTransform: CGRect
@@ -52,11 +52,22 @@ public final class CardTransition: NSObject, UIViewControllerTransitioningDelega
         let settings: TransitionSettings
     }
     
-    let params: Params
+    let cell: CardCollectionViewCell
+    let settings: TransitionSettings
+    
+    public var updatedCardFrame: (()->(CGRect))?
     
     public init(cell: CardCollectionViewCell, settings: TransitionSettings = TransitionSettings()) {
         // Freeze highlighted state (or else it will bounce back)
         cell.freezeAnimations()
+        
+        self.cell = cell
+        self.settings = settings
+        
+        super.init()
+    }
+    
+    private func params() -> Params {
         
         // Get current frame on screen
         let currentCellFrame = cell.layer.presentation()!.frame
@@ -82,25 +93,28 @@ public final class CardTransition: NSObject, UIViewControllerTransitioningDelega
                                            fromCell: cell,
                                            settings: settings)
         
-        self.params = params
-        super.init()
+        return params
     }
     
     public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let baseParams = params()
+        
         let params = PresentCardAnimator.Params.init(
-            fromCardFrame: self.params.fromCardFrame,
-            fromCell: self.params.fromCell,
-            settings: self.params.settings
+            fromCardFrame: baseParams.fromCardFrame,
+            fromCell: baseParams.fromCell,
+            settings: baseParams.settings
         )
         return PresentCardAnimator(params: params)
     }
     
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let baseParams = params()
+        
         let params = DismissCardAnimator.Params.init(
-            fromCardFrame: self.params.fromCardFrame,
-            fromCardFrameWithoutTransform: self.params.fromCardFrameWithoutTransform,
-            fromCell: self.params.fromCell,
-            settings: self.params.settings
+            fromCardFrame: baseParams.fromCardFrame,
+            fromCardFrameWithoutTransform: baseParams.fromCardFrameWithoutTransform,
+            fromCell: baseParams.fromCell,
+            settings: baseParams.settings
         )
         return DismissCardAnimator(params: params)
     }

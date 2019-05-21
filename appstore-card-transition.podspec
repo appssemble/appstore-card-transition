@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "appstore-card-transition"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "Appstore card animation transition. UICollectionView and UITableView card expand animated transition for iOS."
   s.module_name  = 'AppstoreTransition'
   s.swift_version = '5.0'
