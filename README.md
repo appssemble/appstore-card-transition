@@ -124,7 +124,25 @@ Now you are ready to add the actual transition. In your `cellForItemAt` method, 
 
 If you got here you should now have a basic appstore transition. It might not be perfect yet but its definitely a strong start. If something doesn't look well check if the constraints from your details view controller play well with resizing.
 
-## Tweaking and customization
+## Tweaking and troubleshooting
+
+Playing with the parameters: check the `TransitionSettings` class.
+Most common issues are animation glitches. To prevent those, make sure your constraints are properly set (especailly the top ones) and safe areas work as expected.
+
+Next, make sure your `cardContainerInsets` are properly set and they reflect the actual ones from your cell.
+
+Lastly, your scrollview might need some scrolling to match the actual cell look (it might need some more top inset than the cell for instance). For this case you can scroll the content as needed in your `viewDidLoad` method and for the dismiss animation you can use the `dismissalScrollViewContentOffset` property from `TransitionSettings`.
+
+## Customization
+
+Most often than not, you'll want to animate some other content alongside the appstore animation. For this purpose action blocks are available.
 
 ## Example
+
 Checkout the demo project to see some examples of what the library can do and how its done.
+
+## Contribute
+
+We're aware that this is far from perfect so any improvement or feature is welcomed. If you made an awesome change don't hesitate to create a pull request.
+
+This project is inspired from [this project](https://github.com/aunnnn/AppStoreiOS11InteractiveTransition)
