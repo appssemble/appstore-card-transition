@@ -123,6 +123,9 @@ public final class CardDismissHandler: NSObject {
         checkScrolling(scrollView: scrollView)
     }
     
+    private var dismissTop = true
+    private var lastContentOffset: CGFloat = 0
+    
     // This handles both screen edge and dragdown pan. As screen edge pan is a subclass of pan gesture, this input param works.
     @objc func handleDismissalPan(gesture: UIPanGestureRecognizer) {
         
@@ -147,7 +150,20 @@ public final class CardDismissHandler: NSObject {
         }
         
         let currentLocation = gesture.location(in: nil)
-        let progress = isScreenEdgePan ? (gesture.translation(in: targetAnimatedView).x / 100) : (currentLocation.y - startingPoint.y) / 100
+        
+        if (source.scrollView.contentOffset.y <= 0) {
+            dismissTop = true
+        } else if (source.scrollView.contentOffset.y >= source.scrollView.contentSize.height - source.scrollView.frame.height) {
+            dismissTop = false
+        }
+        
+        let progress: CGFloat
+        if (dismissTop) {
+            progress = isScreenEdgePan ? (gesture.translation(in: targetAnimatedView).x / 100) : (currentLocation.y - startingPoint.y) / 100
+        } else {
+            progress = isScreenEdgePan ? (gesture.translation(in: targetAnimatedView).x / 100) : (startingPoint.y - currentLocation.y) / 100
+        }
+        
         let targetShrinkScale: CGFloat = 0.86
         let targetCornerRadius: CGFloat = source.settings.cardCornerRadius
         
@@ -178,7 +194,7 @@ public final class CardDismissHandler: NSObject {
             
             dismissalAnimator!.fractionComplete = actualProgress
             if progress >= 0 {
-                source.scrollView.contentOffset = CGPoint(x: 0, y: 100 * max(progress, 0))
+                source.scrollView.contentOffset = CGPoint(x: 1, y: 100 * max(progress, 0))
                 print("progre \(progress)")
             }
             source.didChangeDismissAnimationProgress(progress: progress)
@@ -217,10 +233,18 @@ public final class CardDismissHandler: NSObject {
             dismissalAnimator!.addCompletion { [unowned self] (pos) in
                 self.didCancelDismissalTransition()
                 gesture.isEnabled = true
+                
+                if (!self.dismissTop && self.lastContentOffset < self.source.scrollView.contentOffset.y) {
+                    self.source.scrollView.setContentOffset(CGPoint(x: 0, y: self.source.scrollView.contentSize.height - self.source.scrollView.bounds.size.height + self.source.scrollView.contentInset.bottom), animated: true)
+                }
             }
             dismissalAnimator!.startAnimation()
         default:
             fatalError("Impossible gesture state? \(gesture.state.rawValue)")
+        }
+        
+        do {
+            self.lastContentOffset = source.scrollView.contentOffset.y
         }
     }
     
@@ -240,9 +264,8 @@ public final class CardDismissHandler: NSObject {
     }
     
     private func checkScrolling(scrollView: UIScrollView) {
-        if draggingDownToDismiss || (scrollView.contentOffset.y <= 0) {
+        if (source.scrollView.contentOffset.y <= 0) || (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.height) {
             draggingDownToDismiss = true
-            //scrollView.contentOffset = CGPoint(x: 0, y: 76)
         }
         
         scrollView.showsVerticalScrollIndicator = !draggingDownToDismiss
@@ -253,6 +276,6 @@ public final class CardDismissHandler: NSObject {
 extension CardDismissHandler: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         checkScrolling(scrollView: source.scrollView)
-        return source.scrollView.contentOffset.y <= 0
+        return source.scrollView.contentOffset.y <= 0 || source.scrollView.contentOffset.y >= source.scrollView.contentSize.height - source.scrollView.frame.height
     }
 }
