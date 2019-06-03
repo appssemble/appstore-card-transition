@@ -4,6 +4,14 @@ Appstore card animation transition. UICollectionView and UITableView card expand
 <img align="left" src="gif/example2.gif" />
 <img align="center" src="gif/example1.gif" />
 
+## How it works
+
+appstore-card-transition uses the `UIViewControllerTransitioningDelegate` to implement the a custom transition animation. The initial frame of the selected cell is taken and the details view controller is animated from that position to the final expanded mode. Making sure that the expansion of the details view controller looks good falls in your responsability.
+
+For closing the details view controller, gesture recognizers are used and the details view controller is animated back to the size of the cell, note that you can change the position of the cell while the details is shown to provide a more dynamic behaviour.
+
+Most of the parameteres are customizable and callbacks for each meaningful action is provided.
+
 ## Installation
 
 ### CocoaPods
