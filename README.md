@@ -49,5 +49,82 @@ Add the library project as a subproject and set the library as a target dependen
 4. Go to **Build Phases**, expand Target Dependencies, and add `AppstoreTransition`;
 5. In Swift, `import AppstoreTransition` and you are good to go! 
 
+## Basic usage guide
+
+First make sure your cells implement the `CardCollectionViewCell` protocol.
+
+```swift
+extension YourCollectionViewCell: CardCollectionViewCell {    
+    var cardContentView: UIView {
+        get {
+            return containerView
+        }
+    }
+}
+```
+
+If you want your cells to also be responsive to touches, override the following methods:
+
+```swift
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        animate(isHighlighted: true)
+    }
+
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        animate(isHighlighted: false)
+    }
+
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        animate(isHighlighted: false)
+    }
+```
+
+Your cell is now all setup, now go to your details view controller and make it conform to the `CardDetailViewController` protocol.
+
+```swift
+extension YourDetailsViewController: CardDetailViewController {
+    
+    var scrollView: UIScrollView {
+        return contentScrollView // the scrollview (or tableview) you use in your details view controller
+    }
+    
+    
+    var cardContentView: UIView {
+        return headerView // can be just a view at the top of the scrollview or the tableHeaderView
+    }
+
+}
+```
+
+One more thing you need to hook in your details view controller. Make sure you call the `dismissHandler` in your `scrollViewDidScroll`:
+
+```swift
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        dismissHandler.scrollViewDidScroll(scrollView)
+    }
+```
+
+Now you are ready to add the actual transition. In your `cellForItemAt` method, after you configured your cell as desired, make sure you set the following:
+
+```swift
+        cell.settings.cardContainerInsets = UIEdgeInsets(top: 8.0, left: 16.0, bottom: 8.0, right: 16.0) //set this only if your cardContentView has some margins relative to the actual cell content view.
+        
+        transition = CardTransition(cell: cell, settings: cell.settings) //create the transition
+        viewController.settings = cell.settings //make sure same settings are used by both the details view controller and the cell
+        //set the transition
+        viewController.transitioningDelegate = transition
+        viewController.modalPresentationStyle = .custom
+        
+        //actually present the details view controller
+        presentExpansion(viewController, cell: cell, animated: true)
+```
+
+If you got here you should now have a basic appstore transition. It might not be perfect yet but its definitely a strong start. If something doesn't look well check if the constraints from your details view controller play well with resizing.
+
+## Tweaking and customization
+
 ## Example
 Checkout the demo project to see some examples of what the library can do and how its done.
