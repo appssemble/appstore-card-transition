@@ -153,7 +153,7 @@ public final class CardDismissHandler: NSObject {
         
         if (source.scrollView.contentOffset.y <= 0) {
             dismissTop = true
-        } else if (source.scrollView.contentOffset.y >= source.scrollView.contentSize.height - source.scrollView.frame.height) {
+        } else if (source.scrollView.contentOffset.y >= source.scrollView.contentSize.height - source.scrollView.frame.height && source.settings.isEnabledBottomClose) {
             dismissTop = false
         }
         
@@ -264,11 +264,19 @@ public final class CardDismissHandler: NSObject {
     }
     
     private func checkScrolling(scrollView: UIScrollView) {
-        if (source.scrollView.contentOffset.y <= 0) || (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.height) {
+        if (shouldDismiss()) {
             draggingDownToDismiss = true
         }
         
         scrollView.showsVerticalScrollIndicator = !draggingDownToDismiss
+    }
+    
+    func shouldDismiss() -> Bool {
+        if (source.settings.isEnabledBottomClose) {
+            return source.scrollView.contentOffset.y <= 0 || source.scrollView.contentOffset.y >= source.scrollView.contentSize.height - source.scrollView.frame.height
+        } else {
+            return source.scrollView.contentOffset.y <= 0
+        }
     }
     
 }
@@ -276,6 +284,6 @@ public final class CardDismissHandler: NSObject {
 extension CardDismissHandler: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         checkScrolling(scrollView: source.scrollView)
-        return source.scrollView.contentOffset.y <= 0 || source.scrollView.contentOffset.y >= source.scrollView.contentSize.height - source.scrollView.frame.height
+        return shouldDismiss()
     }
 }

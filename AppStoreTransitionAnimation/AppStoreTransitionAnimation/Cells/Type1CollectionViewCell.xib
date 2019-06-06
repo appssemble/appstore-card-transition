@@ -169,8 +169,12 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="398" height="343"/>
             <connections>
+                <outlet property="backgroundImage" destination="WLW-S9-o49" id="gHx-uI-wiR"/>
                 <outlet property="bottomContainer" destination="v7m-xp-4l9" id="iRq-dq-eTq"/>
+                <outlet property="commentImageView" destination="NFn-W1-Au7" id="vvz-NR-1xX"/>
                 <outlet property="containerView" destination="ddI-J3-yM6" id="AGf-gW-klW"/>
+                <outlet property="reviewsLabel" destination="MJ4-pz-M1d" id="1RO-Xa-Jtl"/>
+                <outlet property="subtitleLabel" destination="naE-w6-k7X" id="AFf-bk-w5g"/>
             </connections>
             <point key="canvasLocation" x="133" y="191"/>
         </collectionViewCell>

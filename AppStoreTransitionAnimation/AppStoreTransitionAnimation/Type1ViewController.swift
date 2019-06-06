@@ -12,9 +12,13 @@ import AppstoreTransition
 class Type1ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var coverView: UIView!
     @IBOutlet weak var commentCoverViewTop: NSLayoutConstraint!
     
     var dismissAnimationFinishedAction: (()->())?
+    var subtitle: String? = nil
+    var backgroundImage: UIImage? = nil
+    var backgroundColor: UIColor? = nil
     
     lazy var headerView: Type1HeaderView = {
         let view = UINib(nibName: "Type1HeaderView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! Type1HeaderView
@@ -36,6 +40,15 @@ class Type1ViewController: UIViewController {
         tableView.contentOffset = CGPoint(x: 0, y: 50)
         
         headerView.topContainerView.backgroundColor = UIColor(named: "type1color")
+        if let subtitle = subtitle {
+            headerView.subtitleLabel.text = subtitle
+        }
+        if let backgroundImage = backgroundImage {
+            headerView.backgroundImage.image = backgroundImage
+        }
+        if let backgroundColor = backgroundColor {
+            coverView.backgroundColor = backgroundColor
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -97,9 +110,9 @@ extension Type1ViewController: CardDetailViewController {
     }
     
     func didChangeDismissAnimationProgress(progress: CGFloat) {
-        if (progress >= 0 && progress <= 1) {
-            commentCoverViewTop.constant = -64 * progress
-        }
+        var progress = max(0, progress)
+        progress = min(1, progress)
+        commentCoverViewTop.constant = -58 * progress
     }
     
     func didCancelDismissAnimation(progress: CGFloat) {

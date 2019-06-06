@@ -11,6 +11,8 @@ import AppstoreTransition
 
 class Type2CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var backgroundImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

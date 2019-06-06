@@ -91,6 +91,7 @@
                     </view>
                     <connections>
                         <outlet property="commentCoverViewTop" destination="clM-fu-QMX" id="OoQ-92-kwh"/>
+                        <outlet property="coverView" destination="y1A-4O-iGz" id="yuM-ob-Spy"/>
                         <outlet property="tableView" destination="HSl-H8-fg7" id="hcY-ND-tOa"/>
                     </connections>
                 </viewController>
@@ -202,8 +203,10 @@
                         <viewLayoutGuide key="safeArea" id="3rJ-ts-UZ0"/>
                     </view>
                     <connections>
+                        <outlet property="backgroundImage" destination="U6i-2T-rXy" id="WAq-zb-FOl"/>
                         <outlet property="contentScrollView" destination="O8g-0O-yfF" id="gmK-Ge-F03"/>
                         <outlet property="headerView" destination="V0F-4h-PqV" id="c1A-oq-Fnp"/>
+                        <outlet property="subtitleLabel" destination="Yag-Uz-siz" id="xbX-6d-tsD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6w3-B5-mEg" userLabel="First Responder" sceneMemberID="firstResponder"/>

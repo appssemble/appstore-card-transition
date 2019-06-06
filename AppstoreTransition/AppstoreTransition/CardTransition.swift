@@ -19,6 +19,9 @@ public class TransitionSettings {
     /// Without this, there'll be weird offset (probably from scrollView) that obscures the card content view of the cardDetailView.
     public var isEnabledWeirdTopInsetsFix = true
     
+    /// Swipe from bottom should also closes the detail screen.
+    public var isEnabledBottomClose = false
+    
     /// If true, will draw borders on animating views.
     public var isEnabledDebugAnimatingViews = false
     

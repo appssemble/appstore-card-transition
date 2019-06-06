@@ -12,6 +12,11 @@ import AppstoreTransition
 class Type2ViewController: UIViewController {
     @IBOutlet weak var contentScrollView: UIScrollView!
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var backgroundImage: UIImageView!
+    
+    var subtitle: String? = nil
+    var background: UIImage? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +25,10 @@ class Type2ViewController: UIViewController {
         contentScrollView.delegate = self
         
         let _ = dismissHandler
+        subtitleLabel.text = subtitle
+        if let background = background {
+            backgroundImage.image = background
+        }
     }
 
 }

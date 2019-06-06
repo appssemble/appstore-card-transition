@@ -24,7 +24,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="564"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="type2-background" translatesAutoresizingMaskIntoConstraints="NO" id="kcP-r6-FwH">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="type2-background" translatesAutoresizingMaskIntoConstraints="NO" id="kcP-r6-FwH">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="564"/>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nVM-G8-EfB">
@@ -132,7 +132,9 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="wuL-Mz-6xW"/>
             <connections>
+                <outlet property="backgroundImage" destination="kcP-r6-FwH" id="g8i-1V-OYd"/>
                 <outlet property="playerImageView" destination="kcP-r6-FwH" id="rHv-AS-q17"/>
+                <outlet property="subtitleLabel" destination="ujz-aW-oBG" id="B8c-TF-qKJ"/>
                 <outlet property="textWidth" destination="fIG-qu-NAu" id="6p6-C8-J4J"/>
                 <outlet property="topContainerHeight" destination="obP-EY-5p6" id="NeH-pn-v04"/>
                 <outlet property="topContainerView" destination="Lkh-8h-i85" id="ZaK-is-Aac"/>

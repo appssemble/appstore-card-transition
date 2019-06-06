@@ -112,7 +112,9 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="317" height="245"/>
             <connections>
+                <outlet property="backgroundImage" destination="8fD-Ai-2tK" id="O0X-rd-SvP"/>
                 <outlet property="containerView" destination="a13-es-EZi" id="kk5-k0-0lv"/>
+                <outlet property="subtitleLabel" destination="tP5-On-qN4" id="vhR-cL-grc"/>
             </connections>
             <point key="canvasLocation" x="331.15942028985512" y="157.03125"/>
         </collectionViewCell>

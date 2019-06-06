@@ -11,6 +11,8 @@ import UIKit
 class Type1HeaderView: UIView {
     @IBOutlet weak var topContainerView: UIView!
     @IBOutlet weak var playerImageView: UIImageView!
+    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var backgroundImage: UIImageView!
     
     @IBOutlet weak var topContainerHeight: NSLayoutConstraint!
     @IBOutlet weak var textWidth: NSLayoutConstraint!
