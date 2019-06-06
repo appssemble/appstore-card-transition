@@ -193,7 +193,7 @@ public final class CardDismissHandler: NSObject {
             let isDismissalSuccess = actualProgress >= 1.0
             
             dismissalAnimator!.fractionComplete = actualProgress
-            if progress >= 0 {
+            if progress >= 0 && progress <= 1 {
                 source.scrollView.contentOffset = CGPoint(x: 1, y: 100 * max(progress, 0))
                 print("progre \(progress)")
             }

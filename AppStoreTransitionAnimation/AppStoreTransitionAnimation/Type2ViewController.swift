@@ -36,6 +36,9 @@ class Type2ViewController: UIViewController {
 extension Type2ViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // prevent bouncing when swiping down to close
+        scrollView.bounces = scrollView.contentOffset.y > 100
+        
         dismissHandler.scrollViewDidScroll(scrollView)
     }
     

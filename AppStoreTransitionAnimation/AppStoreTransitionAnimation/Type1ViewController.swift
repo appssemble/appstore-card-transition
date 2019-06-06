@@ -82,6 +82,9 @@ extension Type1ViewController: UITableViewDataSource {
 extension Type1ViewController: UITableViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // prevent bouncing when swiping down to close
+        scrollView.bounces = scrollView.contentOffset.y > 100
+        
         dismissHandler.scrollViewDidScroll(scrollView)
         
         if scrollView.contentOffset.y < 0 {
