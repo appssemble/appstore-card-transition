@@ -5,9 +5,9 @@ Appstore card animation transition. UICollectionView and UITableView card expand
 
 [![Version](https://img.shields.io/cocoapods/v/appstore-card-transition.svg)](http://cocoapods.org/pods/Hero)
 [![License](https://img.shields.io/cocoapods/l/appstore-card-transition.svg)](https://github.com/appssemble/appstore-card-transition/blob/master/LICENSE?raw=true)
-![Xcode 10.0+](https://img.shields.io/badge/Xcode-9.0%2B-blue.svg)
-![iOS 11.0+](https://img.shields.io/badge/iOS-8.0%2B-blue.svg)
-![Swift 5.0+](https://img.shields.io/badge/Swift-4.0%2B-orange.svg)
+![Xcode 10.0+](https://img.shields.io/badge/Xcode-10.0%2B-blue.svg)
+![iOS 11.0+](https://img.shields.io/badge/iOS-11.0%2B-blue.svg)
+![Swift 5.0+](https://img.shields.io/badge/Swift-5.0%2B-orange.svg)
 
 ### Top dismissal
 <img align="left" src="gif/example2.gif" />
