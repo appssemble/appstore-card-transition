@@ -1,8 +1,13 @@
 # appstore-card-transition
 Appstore card animation transition. UICollectionView and UITableView card expand animated transition. This library tries to add the appstore transition to your own app. The goal is to be as simple as possible to integrate in an app while keeping the flexibility and customization alive.
 
+### Top dismissal
 <img align="left" src="gif/example2.gif" />
 <img align="center" src="gif/example1.gif" />
+
+### Bottom dismissal
+<img align="left" src="gif/example3.gif" />
+<img align="center" src="gif/example4.gif" />
 
 ## How it works
 
