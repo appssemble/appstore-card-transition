@@ -1,13 +1,14 @@
 <img align="center" src="gif/logo.png" />
 
 # appstore-card-transition
-Appstore card animation transition. UICollectionView and UITableView card expand animated transition. This library tries to add the appstore transition to your own app. The goal is to be as simple as possible to integrate in an app while keeping the flexibility and customization alive.
 
 [![Version](https://img.shields.io/cocoapods/v/appstore-card-transition.svg)](http://cocoapods.org/pods/Hero)
 [![License](https://img.shields.io/cocoapods/l/appstore-card-transition.svg)](https://github.com/appssemble/appstore-card-transition/blob/master/LICENSE?raw=true)
 ![Xcode 10.0+](https://img.shields.io/badge/Xcode-10.0%2B-blue.svg)
 ![iOS 11.0+](https://img.shields.io/badge/iOS-11.0%2B-blue.svg)
 ![Swift 5.0+](https://img.shields.io/badge/Swift-5.0%2B-orange.svg)
+
+Appstore card animation transition. UICollectionView and UITableView card expand animated transition. This library tries to add the appstore transition to your own app. The goal is to be as simple as possible to integrate in an app while keeping the flexibility and customization alive.
 
 ### Top dismissal
 <img align="left" src="gif/example2.gif" />
