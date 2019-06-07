@@ -151,12 +151,6 @@ public final class CardDismissHandler: NSObject {
         
         let currentLocation = gesture.location(in: nil)
         
-        if (source.scrollView.contentOffset.y <= 0) {
-            dismissTop = true
-        } else if (source.scrollView.contentOffset.y >= source.scrollView.contentSize.height - source.scrollView.frame.height && source.settings.isEnabledBottomClose) {
-            dismissTop = false
-        }
-        
         let progress: CGFloat
         if (dismissTop) {
             progress = isScreenEdgePan ? (gesture.translation(in: targetAnimatedView).x / 100) : (currentLocation.y - startingPoint.y) / 100
@@ -184,6 +178,13 @@ public final class CardDismissHandler: NSObject {
         
         switch gesture.state {
         case .began:
+            
+            if (source.scrollView.contentOffset.y <= 0) {
+                dismissTop = true
+            } else if (source.scrollView.contentOffset.y >= source.scrollView.contentSize.height - source.scrollView.frame.height && source.settings.isEnabledBottomClose) {
+                dismissTop = false
+            }
+            
             dismissalAnimator = createInteractiveDismissalAnimatorIfNeeded()
             source.didBeginDismissAnimation()
         case .changed:
@@ -194,8 +195,7 @@ public final class CardDismissHandler: NSObject {
             
             dismissalAnimator!.fractionComplete = actualProgress
             if progress >= 0 && progress <= 1 {
-                source.scrollView.contentOffset = CGPoint(x: 1, y: 100 * max(progress, 0))
-                print("progre \(progress)")
+                source.scrollView.contentOffset = CGPoint(x: 0, y: 100 * max(progress, 0))
             }
             source.didChangeDismissAnimationProgress(progress: progress)
             
@@ -246,6 +246,8 @@ public final class CardDismissHandler: NSObject {
         do {
             self.lastContentOffset = source.scrollView.contentOffset.y
         }
+        
+        source.scrollView.bounces = source.scrollView.contentOffset.y > 100
     }
     
     func didSuccessfullyDragDownToDismiss() {

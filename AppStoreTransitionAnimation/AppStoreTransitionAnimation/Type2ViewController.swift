@@ -25,7 +25,9 @@ class Type2ViewController: UIViewController {
         contentScrollView.delegate = self
         
         let _ = dismissHandler
-        subtitleLabel.text = subtitle
+        if let subtitle = subtitle {
+            subtitleLabel.text = subtitle
+        }
         if let background = background {
             backgroundImage.image = background
         }
