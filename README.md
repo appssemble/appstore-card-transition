@@ -142,7 +142,21 @@ Lastly, your scrollview might need some scrolling to match the actual cell look 
 
 ## Customization
 
-Most often than not, you'll want to animate some other content alongside the appstore animation. For this purpose action blocks are available.
+Most often than not, you'll want to animate some other content alongside the appstore animation. For this purpose action blocks are available. You can implement the following callbacks to receive changes in the transition progress.
+
+```swift
+extension YourDetailsViewController: CardDetailViewController {
+
+    func didStartPresentAnimationProgress() { ... }
+    func didFinishPresentAnimationProgress() { ... }
+    
+    func didBeginDismissAnimation() { ... }
+    func didChangeDismissAnimationProgress(progress:CGFloat) { ... }
+    func didFinishDismissAnimation() { ... }
+    func didCancelDismissAnimation(progress:CGFloat) { ... }
+    
+}
+```
 
 ## Example
 
