@@ -62,6 +62,16 @@ public extension CardDetailViewController {
         }
     }
     
+    var dismissEnabled: Bool {
+        get {
+            return dismissHandler.dismissalPanGesture.isEnabled
+        }
+        
+        set {
+            dismissHandler.dismissalPanGesture.isEnabled = newValue
+            dismissHandler.dismissalScreenEdgePanGesture.isEnabled = newValue
+        }
+    }
     
     func didStartPresentAnimationProgress() {}
     func didFinishPresentAnimationProgress() {}
@@ -78,13 +88,13 @@ public final class CardDismissHandler: NSObject {
     final class DismissalPanGesture: UIPanGestureRecognizer {}
     final class DismissalScreenEdgePanGesture: UIScreenEdgePanGestureRecognizer {}
     
-    private lazy var dismissalPanGesture: DismissalPanGesture = {
+    lazy var dismissalPanGesture: DismissalPanGesture = {
         let pan = DismissalPanGesture()
         pan.maximumNumberOfTouches = 1
         return pan
     }()
     
-    private lazy var dismissalScreenEdgePanGesture: DismissalScreenEdgePanGesture = {
+    lazy var dismissalScreenEdgePanGesture: DismissalScreenEdgePanGesture = {
         let pan = DismissalScreenEdgePanGesture()
         pan.edges = .left
         return pan
