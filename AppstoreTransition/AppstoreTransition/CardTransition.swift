@@ -13,6 +13,7 @@ public class TransitionSettings {
     public var cardCornerRadius: CGFloat = 8
     public var dismissalAnimationDuration = 0.6
     public var dismissalScrollViewContentOffset = CGPoint.zero
+    public var blurEnabled = true
     public var blurColor = UIColor.clear
     public var blurAlpha: CGFloat = 1.0
     

@@ -29,9 +29,11 @@ final class CardPresentationController: UIPresentationController {
         container.addSubview(blurView)
         blurView.edges(to: container)
         blurView.alpha = 0.0
-        blurView.effect = UIBlurEffect(style: .light)
         if let settings = settings {
             blurView.backgroundColor = settings.blurColor
+            if settings.blurEnabled {
+                blurView.effect = UIBlurEffect(style: .light)
+            }
         }
         
         presentingViewController.beginAppearanceTransition(false, animated: false)
