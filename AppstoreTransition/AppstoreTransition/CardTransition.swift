@@ -13,6 +13,8 @@ public class TransitionSettings {
     public var cardCornerRadius: CGFloat = 8
     public var dismissalAnimationDuration = 0.6
     public var dismissalScrollViewContentOffset = CGPoint.zero
+    public var blurColor = UIColor.clear
+    public var blurAlpha: CGFloat = 1.0
     
     public var cardVerticalExpandingStyle: CardVerticalExpandingStyle = .fromTop
     
@@ -132,6 +134,9 @@ public final class CardTransition: NSObject, UIViewControllerTransitioningDelega
     
     // IMPORTANT: Must set modalPresentationStyle to `.custom` for this to be used.
     public func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return CardPresentationController(presentedViewController: presented, presenting: presenting)
+        let cardPresentationController = CardPresentationController(presentedViewController: presented, presenting: presenting)
+        cardPresentationController.settings = settings
+        
+        return cardPresentationController
     }
 }

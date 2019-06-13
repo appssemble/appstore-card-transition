@@ -12,6 +12,8 @@ final class CardPresentationController: UIPresentationController {
     
     private lazy var blurView = UIVisualEffectView(effect: nil)
     
+    var settings: TransitionSettings?
+    
     // Default is false.
     // And also means you can access only `.to` when present, and `.from` when dismiss (e.g., can touch only 'presented view').
     //
@@ -27,12 +29,15 @@ final class CardPresentationController: UIPresentationController {
         container.addSubview(blurView)
         blurView.edges(to: container)
         blurView.alpha = 0.0
+        blurView.effect = UIBlurEffect(style: .light)
+        if let settings = settings {
+            blurView.backgroundColor = settings.blurColor
+        }
         
         presentingViewController.beginAppearanceTransition(false, animated: false)
         presentedViewController.transitionCoordinator!.animate(alongsideTransition: { (ctx) in
             UIView.animate(withDuration: 0.5, animations: {
-                self.blurView.effect = UIBlurEffect(style: .light)
-                self.blurView.alpha = 1
+                self.blurView.alpha = self.settings?.blurAlpha ?? 1.0
             })
         }) { (ctx) in }
     }
