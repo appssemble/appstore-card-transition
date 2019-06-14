@@ -204,7 +204,7 @@ public final class CardDismissHandler: NSObject {
             let isDismissalSuccess = actualProgress >= 1.0
             
             dismissalAnimator!.fractionComplete = actualProgress
-            if progress >= 0 && progress <= 1 {
+            if progress >= 0 && progress <= 1 && dismissTop {
                 source.scrollView.contentOffset = CGPoint(x: 0, y: 100 * max(progress, 0))
             }
             source.didChangeDismissAnimationProgress(progress: progress)
@@ -244,9 +244,9 @@ public final class CardDismissHandler: NSObject {
                 self.didCancelDismissalTransition()
                 gesture.isEnabled = true
                 
-                if (!self.dismissTop && self.lastContentOffset < self.source.scrollView.contentOffset.y) {
-                    self.source.scrollView.setContentOffset(CGPoint(x: 0, y: self.source.scrollView.contentSize.height - self.source.scrollView.bounds.size.height + self.source.scrollView.contentInset.bottom), animated: true)
-                }
+                //if (!self.dismissTop && self.lastContentOffset < self.source.scrollView.contentOffset.y) {
+                    //self.source.scrollView.setContentOffset(CGPoint(x: 0, y: self.source.scrollView.contentSize.height - self.source.scrollView.bounds.size.height + self.source.scrollView.contentInset.bottom), animated: true)
+                //}
             }
             dismissalAnimator!.startAnimation()
         default:

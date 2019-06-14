@@ -108,6 +108,10 @@ extension Type1ViewController: CardDetailViewController {
         tableView.contentOffset = CGPoint(x: 0, y: 0)
     }
     
+    func didBeginDismissAnimation() {
+       // tableView.setContentOffset(.zero, animated: true)
+    }
+    
     func didFinishDismissAnimation() {
         dismissAnimationFinishedAction?()
     }
