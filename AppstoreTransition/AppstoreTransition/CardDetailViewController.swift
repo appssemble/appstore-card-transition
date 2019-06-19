@@ -28,6 +28,7 @@ public protocol CardDetailViewController: UIViewController {
     
     func didBeginDismissAnimation()
     func didChangeDismissAnimationProgress(progress:CGFloat)
+    func didStartDismissAnimation()
     func didFinishDismissAnimation()
     func didCancelDismissAnimation(progress:CGFloat)
 }
@@ -78,6 +79,7 @@ public extension CardDetailViewController {
     
     func didBeginDismissAnimation() {}
     func didChangeDismissAnimationProgress(progress:CGFloat) {}
+    func didStartDismissAnimation() {}
     func didFinishDismissAnimation() {}
     func didCancelDismissAnimation(progress:CGFloat) {}
     
@@ -245,7 +247,7 @@ public final class CardDismissHandler: NSObject {
                 gesture.isEnabled = true
                 
                 //if (!self.dismissTop && self.lastContentOffset < self.source.scrollView.contentOffset.y) {
-                    //self.source.scrollView.setContentOffset(CGPoint(x: 0, y: self.source.scrollView.contentSize.height - self.source.scrollView.bounds.size.height + self.source.scrollView.contentInset.bottom), animated: true)
+                //self.source.scrollView.setContentOffset(CGPoint(x: 0, y: self.source.scrollView.contentSize.height - self.source.scrollView.bounds.size.height + self.source.scrollView.contentInset.bottom), animated: true)
                 //}
             }
             dismissalAnimator!.startAnimation()
@@ -263,6 +265,7 @@ public final class CardDismissHandler: NSObject {
     func didSuccessfullyDragDownToDismiss() {
         //cardViewModel = unhighlightedCardViewModel
         //source.dismiss(animated: true)
+        self.source.didStartDismissAnimation()
         source.dismiss(animated: true) {
             self.source.didFinishDismissAnimation()
         }
