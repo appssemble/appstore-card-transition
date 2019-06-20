@@ -2,7 +2,7 @@
 
 # appstore-card-transition
 
-[![Version](https://img.shields.io/cocoapods/v/appstore-card-transition.svg)](http://cocoapods.org/pods/Hero)
+[![Version](https://img.shields.io/cocoapods/v/appstore-card-transition.svg)](http://cocoapods.org/pods/appstore-card-transition)
 [![License](https://img.shields.io/cocoapods/l/appstore-card-transition.svg)](https://github.com/appssemble/appstore-card-transition/blob/master/LICENSE?raw=true)
 ![Xcode 10.0+](https://img.shields.io/badge/Xcode-10.0%2B-blue.svg)
 ![iOS 11.0+](https://img.shields.io/badge/iOS-11.0%2B-blue.svg)
