@@ -154,10 +154,10 @@ final class PresentCardTransitionDriver {
         params.fromCell.isHidden = true
         params.fromCell.resetTransform()
         
+        container.layoutIfNeeded()
+        
         let topTemporaryFix = screens.cardDetail.cardContentView.topAnchor.constraint(equalTo: cardDetailView.topAnchor, constant: 0)
         topTemporaryFix.isActive = params.settings.isEnabledWeirdTopInsetsFix
-        
-        container.layoutIfNeeded()
         
         // ------------------------------
         // 1. Animate container bouncing up
