@@ -14,7 +14,7 @@ final class PresentCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
     
     struct Params {
         let fromCardFrame: CGRect
-        let fromCell: CardCollectionViewCell
+        let fromCell: TransitionableCardView
         let settings: TransitionSettings
     }
     

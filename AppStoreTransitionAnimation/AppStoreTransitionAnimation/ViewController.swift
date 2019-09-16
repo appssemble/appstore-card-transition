@@ -99,7 +99,7 @@ extension ViewController: UICollectionViewDelegate {
         }
         
         // Get tapped cell location
-        let cell = collectionView.cellForItem(at: indexPath) as! CardCollectionViewCell
+        let cell = collectionView.cellForItem(at: indexPath) as! TransitionableCardView
         
         cell.settings.dismissalScrollViewContentOffset = CGPoint(x: 0, y: 50)
         cell.settings.isEnabledBottomClose = bottomDismiss
@@ -121,7 +121,7 @@ extension ViewController: UICollectionViewDelegate {
         let viewController = storyboard.instantiateViewController(withIdentifier: "type2") as! Type2ViewController
         
         // Get tapped cell location
-        let cell = collectionView.cellForItem(at: indexPath) as! CardCollectionViewCell
+        let cell = collectionView.cellForItem(at: indexPath) as! TransitionableCardView
         cell.settings.cardContainerInsets = UIEdgeInsets(top: 8.0, left: 16.0, bottom: 8.0, right: 16.0)
         cell.settings.isEnabledBottomClose = bottomDismiss
         
@@ -151,7 +151,7 @@ extension ViewController: UICollectionViewDelegate {
         }
         
         // Get tapped cell location
-        let cell = collectionView.cellForItem(at: indexPath) as! CardCollectionViewCell
+        let cell = collectionView.cellForItem(at: indexPath) as! TransitionableCardView
         
         cell.settings.dismissalScrollViewContentOffset = CGPoint(x: 0, y: 50)
         cell.settings.isEnabledBottomClose = bottomDismiss
@@ -176,7 +176,7 @@ extension ViewController: UICollectionViewDelegate {
         let viewController = storyboard.instantiateViewController(withIdentifier: "type2") as! Type2ViewController
         
         // Get tapped cell location
-        let cell = collectionView.cellForItem(at: indexPath) as! CardCollectionViewCell
+        let cell = collectionView.cellForItem(at: indexPath) as! TransitionableCardView
         cell.settings.cardContainerInsets = UIEdgeInsets(top: 8.0, left: 16.0, bottom: 8.0, right: 16.0)
         cell.settings.isEnabledBottomClose = bottomDismiss
         

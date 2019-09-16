@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		74C1F3D8228BECEB000B6AF2 /* AppstoreTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C1F3D6228BECEB000B6AF2 /* AppstoreTransition.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74C1F3E6228BEDE8000B6AF2 /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C1F3E5228BEDE8000B6AF2 /* CardCollectionViewCell.swift */; };
+		74C1F3E6228BEDE8000B6AF2 /* TransitionableCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C1F3E5228BEDE8000B6AF2 /* TransitionableCardView.swift */; };
 		74C1F3EC228BEDF9000B6AF2 /* CardTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C1F3E7228BEDF7000B6AF2 /* CardTransition.swift */; };
 		74C1F3ED228BEDF9000B6AF2 /* CardPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C1F3E8228BEDF9000B6AF2 /* CardPresentationController.swift */; };
 		74C1F3EE228BEDF9000B6AF2 /* DismissCardAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C1F3E9228BEDF9000B6AF2 /* DismissCardAnimator.swift */; };
@@ -22,7 +22,7 @@
 		74C1F3D3228BECEB000B6AF2 /* AppstoreTransition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppstoreTransition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74C1F3D6228BECEB000B6AF2 /* AppstoreTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppstoreTransition.h; sourceTree = "<group>"; };
 		74C1F3D7228BECEB000B6AF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		74C1F3E5228BEDE8000B6AF2 /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
+		74C1F3E5228BEDE8000B6AF2 /* TransitionableCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionableCardView.swift; sourceTree = "<group>"; };
 		74C1F3E7228BEDF7000B6AF2 /* CardTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTransition.swift; sourceTree = "<group>"; };
 		74C1F3E8228BEDF9000B6AF2 /* CardPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardPresentationController.swift; sourceTree = "<group>"; };
 		74C1F3E9228BEDF9000B6AF2 /* DismissCardAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissCardAnimator.swift; sourceTree = "<group>"; };
@@ -67,7 +67,7 @@
 				74C1F3E7228BEDF7000B6AF2 /* CardTransition.swift */,
 				74C1F3E9228BEDF9000B6AF2 /* DismissCardAnimator.swift */,
 				74C1F3EB228BEDF9000B6AF2 /* PresentCardAnimator.swift */,
-				74C1F3E5228BEDE8000B6AF2 /* CardCollectionViewCell.swift */,
+				74C1F3E5228BEDE8000B6AF2 /* TransitionableCardView.swift */,
 				74C1F3D6228BECEB000B6AF2 /* AppstoreTransition.h */,
 				74C1F3D7228BECEB000B6AF2 /* Info.plist */,
 				74C1F3F8228BEF2C000B6AF2 /* UIView+Extension.swift */,
@@ -162,7 +162,7 @@
 				74C1F3EE228BEDF9000B6AF2 /* DismissCardAnimator.swift in Sources */,
 				74C1F3EC228BEDF9000B6AF2 /* CardTransition.swift in Sources */,
 				74C1F3F0228BEDF9000B6AF2 /* PresentCardAnimator.swift in Sources */,
-				74C1F3E6228BEDE8000B6AF2 /* CardCollectionViewCell.swift in Sources */,
+				74C1F3E6228BEDE8000B6AF2 /* TransitionableCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

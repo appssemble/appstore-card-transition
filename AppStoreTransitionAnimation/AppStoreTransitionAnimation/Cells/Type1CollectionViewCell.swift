@@ -43,7 +43,7 @@ class Type1CollectionViewCell: UICollectionViewCell {
     
 }
 
-extension Type1CollectionViewCell: CardCollectionViewCell {    
+extension Type1CollectionViewCell: TransitionableCardView {    
     
     var cardContentView: UIView {
         get {

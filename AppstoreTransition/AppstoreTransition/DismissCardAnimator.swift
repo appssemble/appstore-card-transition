@@ -13,7 +13,7 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
     struct Params {
         let fromCardFrame: CGRect
         let fromCardFrameWithoutTransform: CGRect
-        let fromCell: CardCollectionViewCell
+        let fromCell: TransitionableCardView
         let settings: TransitionSettings
     }
     
