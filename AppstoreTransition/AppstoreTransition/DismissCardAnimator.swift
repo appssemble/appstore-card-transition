@@ -1,3 +1,4 @@
+
 //
 //  DismissCardAnimator.swift
 //  Kickster
@@ -41,30 +42,44 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
             ctx.viewController(forKey: .to)! as! CardsViewController
         )
         
+        // Sometimes they could pop up when the view shrinks
+        screens.cardDetail.scrollView.showsVerticalScrollIndicator = false
+        screens.cardDetail.scrollView.showsHorizontalScrollIndicator = false
+        
         let cardDetailView = ctx.view(forKey: .from)!
         
+        let animatedShadowContainerView = UIView()
+        animatedShadowContainerView.backgroundColor = .clear
+        animatedShadowContainerView.layer.applyShadow(from: params.fromCell.cardContentView.layer)
+        
         let animatedContainerView = UIView()
+        animatedContainerView.backgroundColor = .clear
         if params.settings.isEnabledDebugAnimatingViews {
             animatedContainerView.layer.borderColor = UIColor.yellow.cgColor
             animatedContainerView.layer.borderWidth = 4
             cardDetailView.layer.borderColor = UIColor.red.cgColor
             cardDetailView.layer.borderWidth = 2
+            animatedShadowContainerView.layer.borderWidth = 3
+            animatedShadowContainerView.layer.borderColor = UIColor.purple.cgColor
         }
+        animatedShadowContainerView.translatesAutoresizingMaskIntoConstraints = false
         animatedContainerView.translatesAutoresizingMaskIntoConstraints = false
         cardDetailView.translatesAutoresizingMaskIntoConstraints = false
         
         container.removeConstraints(container.constraints)
         
-        container.addSubview(animatedContainerView)
+        container.addSubview(animatedShadowContainerView)
+        animatedShadowContainerView.addSubview(animatedContainerView)
         animatedContainerView.addSubview(cardDetailView)
         
         // Card fills inside animated container view
+        animatedContainerView.edges(to: animatedShadowContainerView)
         cardDetailView.edges(to: animatedContainerView)
                 
-        let animatedContainerLeftConstraint = animatedContainerView.leftAnchor.constraint(equalTo: container.leftAnchor)
-        let animatedContainerTopConstraint = animatedContainerView.topAnchor.constraint(equalTo: container.topAnchor, constant: params.settings.cardContainerInsets.top)
-        let animatedContainerWidthConstraint = animatedContainerView.widthAnchor.constraint(equalToConstant: cardDetailView.frame.width)
-        let animatedContainerHeightConstraint = animatedContainerView.heightAnchor.constraint(equalToConstant: cardDetailView.frame.height)
+        let animatedContainerLeftConstraint = animatedShadowContainerView.leftAnchor.constraint(equalTo: container.leftAnchor)
+        let animatedContainerTopConstraint = animatedShadowContainerView.topAnchor.constraint(equalTo: container.topAnchor, constant: params.settings.cardContainerInsets.top)
+        let animatedContainerWidthConstraint = animatedShadowContainerView.widthAnchor.constraint(equalToConstant: cardDetailView.frame.width)
+        let animatedContainerHeightConstraint = animatedShadowContainerView.heightAnchor.constraint(equalToConstant: cardDetailView.frame.height)
         
         NSLayoutConstraint.activate([animatedContainerTopConstraint, animatedContainerWidthConstraint, animatedContainerHeightConstraint, animatedContainerLeftConstraint])
         
@@ -94,11 +109,15 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
         
         func completeEverything() {
             let success = !ctx.transitionWasCancelled
+            
+            animatedShadowContainerView.removeConstraints(animatedShadowContainerView.constraints)
+            animatedShadowContainerView.removeFromSuperview()
             animatedContainerView.removeConstraints(animatedContainerView.constraints)
             animatedContainerView.removeFromSuperview()
+
             if success {
                 cardDetailView.removeFromSuperview()
-                self.params.fromCell.isHidden = false
+                self.params.fromCell.cardContentView.isHidden = false
             } else {
                 //screens.cardDetail.isFontStateHighlighted = true
                 
@@ -115,6 +134,12 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
                 cardDetailView.edges(to: container)
             }
             ctx.completeTransition(success)
+        }
+        
+        // Give gentle feedback at the point in time were the transition "snaps"
+        // The .light feedback that would work on prior versions seems a little too much.
+        if #available(iOS 13.0, *) {
+            UIImpactFeedbackGenerator(style: .soft).impactOccurred(intensity: 0.8)
         }
         
         UIView.animate(withDuration: transitionDuration(using: ctx), delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: [], animations: {
