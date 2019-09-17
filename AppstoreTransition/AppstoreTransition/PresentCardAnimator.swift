@@ -99,7 +99,8 @@ final class PresentCardTransitionDriver {
             let animatedContainerConstraints = [
                 animatedContainerView.widthAnchor.constraint(equalToConstant: container.bounds.width - (params.settings.cardContainerInsets.left + params.settings.cardContainerInsets.right)),
                 animatedContainerView.heightAnchor.constraint(equalToConstant: container.bounds.height - (params.settings.cardContainerInsets.top + params.settings.cardContainerInsets.bottom)),
-                animatedContainerView.centerXAnchor.constraint(equalTo: container.centerXAnchor)
+                animatedContainerView.leftAnchor.constraint(equalTo: container.leftAnchor, constant: params.settings.cardContainerInsets.left),
+                animatedContainerView.rightAnchor.constraint(equalTo: container.rightAnchor, constant: -params.settings.cardContainerInsets.right)
             ]
             NSLayoutConstraint.activate(animatedContainerConstraints)
         }
@@ -123,35 +124,38 @@ final class PresentCardTransitionDriver {
         
         let weirdCardToAnimatedContainerTopAnchor: NSLayoutConstraint
         
-        do /* Pin top (or center Y) and center X of the card, in animated container view */ {
-            let verticalAnchor: NSLayoutConstraint = {
-                switch params.settings.cardVerticalExpandingStyle {
-                case .fromCenter:
-                    return cardDetailView.centerYAnchor.constraint(equalTo: animatedContainerView.centerYAnchor)
-                case .fromTop:
-                    // WTF: SUPER WEIRD BUG HERE.
-                    // I should set this constant to 0 (or nil), to make cardDetailView sticks to the animatedContainerView's top.
-                    // BUT, I can't set constant to 0, or any value in range (-1,1) here, or there will be abrupt top space inset while animating.
-                    // Funny how -1 and 1 work! WTF. You can try set it to 0.
-                    return cardDetailView.topAnchor.constraint(equalTo: animatedContainerView.topAnchor, constant: -1)
-                }
-            }()
-            let cardConstraints = [
-                verticalAnchor,
-                cardDetailView.centerXAnchor.constraint(equalTo: animatedContainerView.centerXAnchor),
-            ]
-            NSLayoutConstraint.activate(cardConstraints)
-        }
-        let cardWidthConstraint = cardDetailView.widthAnchor.constraint(equalToConstant: fromCardFrame.width - (params.settings.cardContainerInsets.left + params.settings.cardContainerInsets.right))
+        // Pin top (or center Y) and center X of the card, in animated container view
+        let verticalAnchor: NSLayoutConstraint = {
+            switch params.settings.cardVerticalExpandingStyle {
+            case .fromCenter:
+                return cardDetailView.centerYAnchor.constraint(equalTo: animatedContainerView.centerYAnchor)
+            case .fromTop:
+                // WTF: SUPER WEIRD BUG HERE.
+                // I should set this constant to 0 (or nil), to make cardDetailView sticks to the animatedContainerView's top.
+                // BUT, I can't set constant to 0, or any value in range (-1,1) here, or there will be abrupt top space inset while animating.
+                // Funny how -1 and 1 work! WTF. You can try set it to 0.
+                return cardDetailView.topAnchor.constraint(equalTo: animatedContainerView.topAnchor, constant: -1)
+            }
+        }()
+        
+        let cardLeftConstraint = cardDetailView.leftAnchor.constraint(equalTo: animatedContainerView.leftAnchor, constant: 0)
+        let cardRightConstraint = cardDetailView.rightAnchor.constraint(equalTo: animatedContainerView.rightAnchor, constant: 0)
         let cardHeightConstraint = cardDetailView.heightAnchor.constraint(equalToConstant: fromCardFrame.height - (params.settings.cardContainerInsets.top + params.settings.cardContainerInsets.bottom))
-        NSLayoutConstraint.activate([cardWidthConstraint, cardHeightConstraint])
+        
+        NSLayoutConstraint.activate([
+            verticalAnchor,
+            cardHeightConstraint,
+            cardLeftConstraint,
+            cardRightConstraint
+        ])
         
         cardDetailView.layer.cornerRadius = params.settings.cardCornerRadius
         
         // -------------------------------
         // Final preparation
         // -------------------------------
-        params.fromCell.isHidden = true
+        params.fromCell.cardContentView.isHidden = true
+        params.fromCell.isHidden = false
         params.fromCell.resetTransform()
         
         container.layoutIfNeeded()
@@ -173,7 +177,9 @@ final class PresentCardTransitionDriver {
         func animateCardDetailViewSizing() {
             screens.cardDetail.didStartPresentAnimationProgress()
             
-            cardWidthConstraint.constant = animatedContainerView.bounds.width + (params.settings.cardContainerInsets.left + params.settings.cardContainerInsets.right)
+            cardLeftConstraint.constant = -params.settings.cardContainerInsets.left
+            cardRightConstraint.constant = params.settings.cardContainerInsets.right
+                        
             cardHeightConstraint.constant = animatedContainerView.bounds.height + (params.settings.cardContainerInsets.top + params.settings.cardContainerInsets.bottom)
             cardDetailView.layer.cornerRadius = 0
             container.layoutIfNeeded()
@@ -187,7 +193,7 @@ final class PresentCardTransitionDriver {
             // Re-add to the top
             container.addSubview(cardDetailView)
             
-            cardDetailView.removeConstraints([topTemporaryFix, cardWidthConstraint, cardHeightConstraint])
+            cardDetailView.removeConstraints([topTemporaryFix, cardLeftConstraint, cardRightConstraint, cardHeightConstraint])
             
             // Keep -1 to be consistent with the weird bug above.
             cardDetailView.edges(to: container, top: -1)
@@ -208,7 +214,7 @@ final class PresentCardTransitionDriver {
             animateContainerBouncingUp()
             
             // Linear animation for expansion
-            let cardExpanding = UIViewPropertyAnimator(duration: baseAnimator.duration * 0.6, curve: .linear) {
+            let cardExpanding = UIViewPropertyAnimator(duration: baseAnimator.duration * 0.6, curve: .easeOut) {
                 animateCardDetailViewSizing()
             }
             cardExpanding.startAnimation()
