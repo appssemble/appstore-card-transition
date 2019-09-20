@@ -13,8 +13,8 @@ private struct AssociatedKeys {
     static var dismissHandlerKey: UInt8 = 0
 }
 
-public protocol CardsViewController {
-    
+public protocol CardsViewController: UIViewController {
+    var transitionDelegate: CardTransitioningDelegate? { get set }
 }
 
 public protocol CardDetailViewController: UIViewController {

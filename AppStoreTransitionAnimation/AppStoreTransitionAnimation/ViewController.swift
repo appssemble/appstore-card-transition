@@ -12,7 +12,7 @@ import AppstoreTransition
 class ViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private var transition: CardTransition?
+    var transitionDelegate: CardTransitioningDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,10 +105,10 @@ extension ViewController: UICollectionViewDelegate {
         cell.settings.isEnabledBottomClose = bottomDismiss
         cell.settings.cardContainerInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 0, right: 8.0)
         
-        transition = CardTransition(cell: cell, settings: cell.settings)
+        transitionDelegate = CardTransitioningDelegate(cell: cell, settings: cell.settings)
         viewController.settings = cell.settings
-        viewController.transitioningDelegate = transition
-        
+        viewController.transitioningDelegate = transitionDelegate
+
         // If `modalPresentationStyle` is not `.fullScreen`, this should be set to true to make status bar depends on presented vc.
         //viewController.modalPresentationCapturesStatusBarAppearance = true
         viewController.modalPresentationStyle = .custom
@@ -125,10 +125,10 @@ extension ViewController: UICollectionViewDelegate {
         cell.settings.cardContainerInsets = UIEdgeInsets(top: 8.0, left: 16.0, bottom: 8.0, right: 16.0)
         cell.settings.isEnabledBottomClose = bottomDismiss
         
-        transition = CardTransition(cell: cell, settings: cell.settings)
+        transitionDelegate = CardTransitioningDelegate(cell: cell, settings: cell.settings)
         viewController.settings = cell.settings
-        viewController.transitioningDelegate = transition
-        
+        viewController.transitioningDelegate = transitionDelegate
+
         // If `modalPresentationStyle` is not `.fullScreen`, this should be set to true to make status bar depends on presented vc.
         //viewController.modalPresentationCapturesStatusBarAppearance = true
         viewController.modalPresentationStyle = .custom
@@ -157,9 +157,9 @@ extension ViewController: UICollectionViewDelegate {
         cell.settings.isEnabledBottomClose = bottomDismiss
         cell.settings.cardContainerInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 0, right: 8.0)
         
-        transition = CardTransition(cell: cell, settings: cell.settings)
+        transitionDelegate = CardTransitioningDelegate(cell: cell, settings: cell.settings)
         viewController.settings = cell.settings
-        viewController.transitioningDelegate = transition
+        viewController.transitioningDelegate = transitionDelegate
         viewController.subtitle = "You can dismiss from bottom this one"
         viewController.backgroundImage = UIImage(named: "type1-bg-bottom")
         viewController.backgroundColor = .white
@@ -180,9 +180,9 @@ extension ViewController: UICollectionViewDelegate {
         cell.settings.cardContainerInsets = UIEdgeInsets(top: 8.0, left: 16.0, bottom: 8.0, right: 16.0)
         cell.settings.isEnabledBottomClose = bottomDismiss
         
-        transition = CardTransition(cell: cell, settings: cell.settings)
+        transitionDelegate = CardTransitioningDelegate(cell: cell, settings: cell.settings)
         viewController.settings = cell.settings
-        viewController.transitioningDelegate = transition
+        viewController.transitioningDelegate = transitionDelegate
         viewController.subtitle = "Bottom dismissible"
         viewController.background = UIImage(named: "type2-bg-bottom")
         
@@ -196,5 +196,6 @@ extension ViewController: UICollectionViewDelegate {
 }
 
 extension ViewController: CardsViewController {
+   
     
 }

@@ -49,7 +49,7 @@ public class TransitionSettings {
     
 }
 
-public final class CardTransition: NSObject, UIViewControllerTransitioningDelegate {
+public final class CardTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
     
     struct Params {
         let fromCardFrame: CGRect
@@ -94,7 +94,7 @@ public final class CardTransition: NSObject, UIViewControllerTransitioningDelega
             return cell.superview!.convert(r, to: nil)
         }()
         
-        let params = CardTransition.Params(fromCardFrame: cardPresentationFrameOnScreen,
+        let params = CardTransitioningDelegate.Params(fromCardFrame: cardPresentationFrameOnScreen,
                                            fromCardFrameWithoutTransform: cardFrameWithoutTransform,
                                            fromCell: cell,
                                            settings: settings)
