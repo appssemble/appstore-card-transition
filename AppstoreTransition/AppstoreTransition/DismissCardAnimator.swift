@@ -83,16 +83,16 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
         
         NSLayoutConstraint.activate([animatedContainerTopConstraint, animatedContainerWidthConstraint, animatedContainerHeightConstraint, animatedContainerLeftConstraint])
         
+        container.layoutIfNeeded()
+        
         // Fix weird top inset
         let topTemporaryFix = screens.cardDetail.cardContentView.topAnchor.constraint(equalTo: cardDetailView.topAnchor)
         topTemporaryFix.isActive = params.settings.isEnabledWeirdTopInsetsFix
         
-        container.layoutIfNeeded()
-        
         // Force card filling bottom
         let stretchCardToFillBottom = screens.cardDetail.cardContentView.bottomAnchor.constraint(equalTo: cardDetailView.bottomAnchor)
         // for tableview header required confilcts with autoresizing mask constraints
-        stretchCardToFillBottom.priority = .defaultHigh
+        stretchCardToFillBottom.priority = .required
         
         func animateCardViewBackToPlace() {
             stretchCardToFillBottom.isActive = true
@@ -148,10 +148,12 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
             completeEverything()
         }
         
-        UIView.animate(withDuration: transitionDuration(using: ctx) * 0.4) {
-            //print("godam")
-            //screens.cardDetail.scrollView.setContentOffset(self.params.settings.dismissalScrollViewContentOffset, animated: true)
-            screens.cardDetail.scrollView.contentOffset = self.params.settings.dismissalScrollViewContentOffset
-        }
+        screens.cardDetail.scrollView.setContentOffset(.zero, animated: true)
+//        
+//        UIView.animate(withDuration: transitionDuration(using: ctx) * 0.4) {
+//            //print("godam")
+//            //screens.cardDetail.scrollView.setContentOffset(self.params.settings.dismissalScrollViewContentOffset, animated: true)
+//            screens.cardDetail.scrollView.contentOffset = self.params.settings.dismissalScrollViewContentOffset
+//        }
     }
 }

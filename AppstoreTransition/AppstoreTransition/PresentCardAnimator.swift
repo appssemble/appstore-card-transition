@@ -134,7 +134,7 @@ final class PresentCardTransitionDriver {
                 // I should set this constant to 0 (or nil), to make cardDetailView sticks to the animatedContainerView's top.
                 // BUT, I can't set constant to 0, or any value in range (-1,1) here, or there will be abrupt top space inset while animating.
                 // Funny how -1 and 1 work! WTF. You can try set it to 0.
-                return cardDetailView.topAnchor.constraint(equalTo: animatedContainerView.topAnchor, constant: -1)
+                return cardDetailView.topAnchor.constraint(equalTo: animatedContainerView.topAnchor, constant: 0)
             }
         }()
         
@@ -196,7 +196,9 @@ final class PresentCardTransitionDriver {
             cardDetailView.removeConstraints([topTemporaryFix, cardLeftConstraint, cardRightConstraint, cardHeightConstraint])
             
             // Keep -1 to be consistent with the weird bug above.
-            cardDetailView.edges(to: container, top: -1)
+            cardDetailView.edges(to: container, top: 0)
+            cardDetailView.setNeedsLayout()
+            cardDetailView.layoutIfNeeded()
             
             // No longer need the bottom constraint that pins bottom of card content to its root.
             //screens.cardDetail.cardBottomToRootBottomConstraint.isActive = false

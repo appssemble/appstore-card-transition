@@ -29,7 +29,7 @@ public class TransitionSettings {
     public var isEnabledDebugAnimatingViews = false
     
     /// If true, this will add a 'reverse' additional top safe area insets to make the final top safe area insets zero.
-    public var isEnabledTopSafeAreaInsetsFixOnCardDetailViewController = true
+    public var isEnabledTopSafeAreaInsetsFixOnCardDetailViewController = false
     
     /// If true, will always allow user to scroll while it's animated.
     public var isEnabledAllowsUserInteractionWhileHighlightingCard = true
