@@ -129,11 +129,7 @@ final class PresentCardTransitionDriver {
                 case .fromCenter:
                     return cardDetailView.centerYAnchor.constraint(equalTo: animatedContainerView.centerYAnchor)
                 case .fromTop:
-                    // WTF: SUPER WEIRD BUG HERE.
-                    // I should set this constant to 0 (or nil), to make cardDetailView sticks to the animatedContainerView's top.
-                    // BUT, I can't set constant to 0, or any value in range (-1,1) here, or there will be abrupt top space inset while animating.
-                    // Funny how -1 and 1 work! WTF. You can try set it to 0.
-                    return cardDetailView.topAnchor.constraint(equalTo: animatedContainerView.topAnchor, constant: -1)
+                    return cardDetailView.topAnchor.constraint(equalTo: animatedContainerView.topAnchor)
                 }
             }()
             let cardConstraints = [
