@@ -185,8 +185,7 @@ final class PresentCardTransitionDriver {
             
             cardDetailView.removeConstraints([topTemporaryFix, cardWidthConstraint, cardHeightConstraint])
             
-            // Keep -1 to be consistent with the weird bug above.
-            cardDetailView.edges(to: container, top: -1)
+            cardDetailView.edges(to: container)
             
             // No longer need the bottom constraint that pins bottom of card content to its root.
             //screens.cardDetail.cardBottomToRootBottomConstraint.isActive = false
