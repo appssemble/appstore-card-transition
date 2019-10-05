@@ -37,8 +37,7 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  # s.license      = { :type => "Apache 2.0", :file => "LICENSE" }
-  s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
+  s.license      = { :type => "MIT", :file => "LICENSE" }
 
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -61,9 +60,6 @@ Pod::Spec.new do |s|
   #  If this Pod runs only on iOS or OS X, then specify the platform and
   #  the deployment target. You can optionally include the target after the platform.
   #
-
-  #s.platform     = :ios, "8.0"
-  # s.platform     = :ios, "5.0"
 
   #  When using multiple platforms
    s.ios.deployment_target = "11.0"
@@ -88,7 +84,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "AppstoreTransition/AppstoreTransition/*.{h,m,swift,c}"
+  s.source_files  = "Sources/AppstoreTransition/*.{h,m,swift,c}"
   #s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"

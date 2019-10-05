@@ -1,0 +1,16 @@
+PODS:
+  - appstore-card-transition (1.0.3)
+
+DEPENDENCIES:
+  - appstore-card-transition (from `../`)
+
+EXTERNAL SOURCES:
+  appstore-card-transition:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  appstore-card-transition: 909d2198d6c22676eea76bac2721e9026265aa90
+
+PODFILE CHECKSUM: 1ed7eee8a7159fd92c1c137ef930ca0697e46588
+
+COCOAPODS: 1.7.5
