@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,8 +14,6 @@
 		74C1F3BD228BEC34000B6AF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74C1F3BB228BEC34000B6AF2 /* Main.storyboard */; };
 		74C1F3BF228BEC36000B6AF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74C1F3BE228BEC36000B6AF2 /* Assets.xcassets */; };
 		74C1F3C2228BEC36000B6AF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74C1F3C0228BEC36000B6AF2 /* LaunchScreen.storyboard */; };
-		74C1F3F5228BEE5B000B6AF2 /* AppstoreTransition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C1F3E3228BECED000B6AF2 /* AppstoreTransition.framework */; };
-		74C1F3F7228BEE66000B6AF2 /* AppstoreTransition.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 74C1F3E3228BECED000B6AF2 /* AppstoreTransition.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		74C1F3FC228BF1B2000B6AF2 /* Type1CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C1F3FA228BF1B2000B6AF2 /* Type1CollectionViewCell.swift */; };
 		74C1F3FD228BF1B2000B6AF2 /* Type1CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74C1F3FB228BF1B2000B6AF2 /* Type1CollectionViewCell.xib */; };
 		74C1F3FF228BF46B000B6AF2 /* Type1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C1F3FE228BF46B000B6AF2 /* Type1ViewController.swift */; };
@@ -24,6 +22,7 @@
 		74C1F409228C0D81000B6AF2 /* Type2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C1F408228C0D81000B6AF2 /* Type2ViewController.swift */; };
 		74C1F40C228C0DC0000B6AF2 /* Type2CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C1F40A228C0DC0000B6AF2 /* Type2CollectionViewCell.swift */; };
 		74C1F40D228C0DC0000B6AF2 /* Type2CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74C1F40B228C0DC0000B6AF2 /* Type2CollectionViewCell.xib */; };
+		9ECD57D4A5AB17DB37940835 /* Pods_AppStoreTransitionAnimation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3537F095E59846D698CC49F4 /* Pods_AppStoreTransitionAnimation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,13 +49,14 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				74C1F3F7228BEE66000B6AF2 /* AppstoreTransition.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3537F095E59846D698CC49F4 /* Pods_AppStoreTransitionAnimation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppStoreTransitionAnimation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E1ABE57A7C8BF2017C411FB /* Pods-AppStoreTransitionAnimation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreTransitionAnimation.release.xcconfig"; path = "Target Support Files/Pods-AppStoreTransitionAnimation/Pods-AppStoreTransitionAnimation.release.xcconfig"; sourceTree = "<group>"; };
 		746382CC228D5ECE00924C67 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		746382CD228D5ECE00924C67 /* ItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemTableViewCell.xib; sourceTree = "<group>"; };
 		74C1F3B4228BEC34000B6AF2 /* AppStoreTransitionAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStoreTransitionAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +75,7 @@
 		74C1F408228C0D81000B6AF2 /* Type2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type2ViewController.swift; sourceTree = "<group>"; };
 		74C1F40A228C0DC0000B6AF2 /* Type2CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type2CollectionViewCell.swift; sourceTree = "<group>"; };
 		74C1F40B228C0DC0000B6AF2 /* Type2CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Type2CollectionViewCell.xib; sourceTree = "<group>"; };
+		BC5F29925899E57AAA13DB82 /* Pods-AppStoreTransitionAnimation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreTransitionAnimation.debug.xcconfig"; path = "Target Support Files/Pods-AppStoreTransitionAnimation/Pods-AppStoreTransitionAnimation.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,19 +83,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74C1F3F5228BEE5B000B6AF2 /* AppstoreTransition.framework in Frameworks */,
+				9ECD57D4A5AB17DB37940835 /* Pods_AppStoreTransitionAnimation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		71357AACE9976BF08517F81B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BC5F29925899E57AAA13DB82 /* Pods-AppStoreTransitionAnimation.debug.xcconfig */,
+				6E1ABE57A7C8BF2017C411FB /* Pods-AppStoreTransitionAnimation.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		74C1F3AB228BEC34000B6AF2 = {
 			isa = PBXGroup;
 			children = (
 				74C1F3B6228BEC34000B6AF2 /* AppStoreTransitionAnimation */,
 				74C1F3B5228BEC34000B6AF2 /* Products */,
 				74C1F3F4228BEE5B000B6AF2 /* Frameworks */,
+				71357AACE9976BF08517F81B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,6 +146,7 @@
 		74C1F3F4228BEE5B000B6AF2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3537F095E59846D698CC49F4 /* Pods_AppStoreTransitionAnimation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -168,10 +180,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 74C1F3C6228BEC36000B6AF2 /* Build configuration list for PBXNativeTarget "AppStoreTransitionAnimation" */;
 			buildPhases = (
+				345E43C6066EBA3310DBE431 /* [CP] Check Pods Manifest.lock */,
 				74C1F3B0228BEC34000B6AF2 /* Sources */,
 				74C1F3B1228BEC34000B6AF2 /* Frameworks */,
 				74C1F3B2228BEC34000B6AF2 /* Resources */,
 				74C1F3F6228BEE5E000B6AF2 /* CopyFiles */,
+				C51F95ECC29BAF728100F9A1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -248,6 +262,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		345E43C6066EBA3310DBE431 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AppStoreTransitionAnimation-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C51F95ECC29BAF728100F9A1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AppStoreTransitionAnimation/Pods-AppStoreTransitionAnimation-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AppStoreTransitionAnimation/Pods-AppStoreTransitionAnimation-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AppStoreTransitionAnimation/Pods-AppStoreTransitionAnimation-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		74C1F3B0228BEC34000B6AF2 /* Sources */ = {
@@ -346,7 +402,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -401,7 +457,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -413,6 +469,7 @@
 		};
 		74C1F3C7228BEC36000B6AF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC5F29925899E57AAA13DB82 /* Pods-AppStoreTransitionAnimation.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -432,6 +489,7 @@
 		};
 		74C1F3C8228BEC36000B6AF2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E1ABE57A7C8BF2017C411FB /* Pods-AppStoreTransitionAnimation.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

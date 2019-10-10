@@ -1,0 +1,6 @@
+framework module AppstoreTransition {
+  umbrella header "appstore-card-transition-umbrella.h"
+
+  export *
+  module * { export * }
+}
