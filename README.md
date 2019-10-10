@@ -53,6 +53,18 @@ $ pod repo update
 $ pod install
 ```
 
+### Swift Package Manager
+
+The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler. It is in early development, but appstore-card-transition does support its use on supported platforms.
+
+Once you have your Swift package set up, adding appstore-card-transition as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift`.
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/appssemble/appstore-card-transition.git", from: "1.0.3")
+]
+```
+
 ### Manual
 
 Add the library project as a subproject and set the library as a target dependency. Here is a step by step that we recommend:
