@@ -75,8 +75,15 @@ final class PresentCardTransitionDriver {
     init(params: PresentCardAnimator.Params, transitionContext: UIViewControllerContextTransitioning, baseAnimator: UIViewPropertyAnimator) {
         let ctx = transitionContext
         let container = ctx.containerView
+        var fromViewController: CardsViewController! = nil
+        if let viewController = ctx.viewController(forKey: .from) as? CardsViewController {
+            fromViewController = viewController
+        } else if let viewController = ctx.viewController(forKey: .from) as? UITabBarController, let cardViewController = viewController.selectedViewController as? CardsViewController {
+            fromViewController = cardViewController
+        }
+        
         let screens: (home: CardsViewController, cardDetail: CardDetailViewController) = (
-            ctx.viewController(forKey: .from)! as! CardsViewController,
+            fromViewController,
             ctx.viewController(forKey: .to)! as! CardDetailViewController
         )
         
