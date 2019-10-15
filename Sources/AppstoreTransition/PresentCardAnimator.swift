@@ -80,6 +80,8 @@ final class PresentCardTransitionDriver {
             fromViewController = viewController
         } else if let viewController = ctx.viewController(forKey: .from) as? UITabBarController, let cardViewController = viewController.selectedViewController as? CardsViewController {
             fromViewController = cardViewController
+        } else if let viewController = ctx.viewController(forKey: .from) as? UINavigationController, let cardViewController = viewController.topViewController as? CardsViewController {
+            fromViewController = cardViewController
         }
         
         let screens: (home: CardsViewController, cardDetail: CardDetailViewController) = (
