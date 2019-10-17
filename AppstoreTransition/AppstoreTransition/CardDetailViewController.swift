@@ -207,7 +207,7 @@ public final class CardDismissHandler: NSObject {
             
             dismissalAnimator!.fractionComplete = actualProgress
             if progress >= 0 && progress <= 1 && dismissTop {
-                source.scrollView.contentOffset = CGPoint(x: 0, y: 100 * max(progress, 0))
+//                source.scrollView.contentOffset = .zero //CGPoint(x: 0, y: 100 * max(progress, 0))
             }
             source.didChangeDismissAnimationProgress(progress: progress)
             
