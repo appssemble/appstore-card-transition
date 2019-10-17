@@ -117,12 +117,12 @@ public final class CardDismissHandler: NSObject {
         dismissalPanGesture.addTarget(self, action: #selector(handleDismissalPan(gesture:)))
         dismissalPanGesture.delegate = self
         
-        dismissalScreenEdgePanGesture.addTarget(self, action: #selector(handleDismissalPan(gesture:)))
-        dismissalScreenEdgePanGesture.delegate = self
-        
-        // Make drag down/scroll pan gesture waits til screen edge pan to fail first to begin
-        dismissalPanGesture.require(toFail: dismissalScreenEdgePanGesture)
-        source.scrollView.panGestureRecognizer.require(toFail: dismissalScreenEdgePanGesture)
+//        dismissalScreenEdgePanGesture.addTarget(self, action: #selector(handleDismissalPan(gesture:)))
+//        dismissalScreenEdgePanGesture.delegate = self
+//        
+//        // Make drag down/scroll pan gesture waits til screen edge pan to fail first to begin
+//        dismissalPanGesture.require(toFail: dismissalScreenEdgePanGesture)
+//        source.scrollView.panGestureRecognizer.require(toFail: dismissalScreenEdgePanGesture)
         
         source.loadViewIfNeeded()
         source.view.addGestureRecognizer(dismissalPanGesture)
