@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension CALayer {
     func applyShadow(from otherLayer: CALayer) {
