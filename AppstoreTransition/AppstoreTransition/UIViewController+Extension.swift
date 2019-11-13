@@ -23,18 +23,18 @@ public extension UIViewController {
 
 
 public extension UIViewController {
-    func unpackViewController<Type: UIViewController>() -> Type? {
-        if let typed = self as? Type {
+    func unpackViewController<T: UIViewController>(type: T.Type) -> T? {
+        if let typed = self as? T {
             return typed
         }
         if let tabVC = self as? UITabBarController {
-            if let typed = tabVC.selectedViewController as? Type {
+            if let typed = tabVC.selectedViewController as? T {
                 return typed
             }
             guard let navVC = tabVC.selectedViewController as? UINavigationController else {
                 return nil
             }
-            if let typed = navVC.visibleViewController as? Type {
+            if let typed = navVC.visibleViewController as? T {
                 return typed
             }
         }
