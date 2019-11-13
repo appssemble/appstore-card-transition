@@ -20,3 +20,24 @@ public extension UIViewController {
     }
     
 }
+
+
+public extension UIViewController {
+    func unpackViewController<Type: UIViewController>() -> Type? {
+        if let typed = self as? Type {
+            return typed
+        }
+        if let tabVC = self as? UITabBarController {
+            if let typed = tabVC.selectedViewController as? Type {
+                return typed
+            }
+            guard let navVC = tabVC.selectedViewController as? UINavigationController else {
+                return nil
+            }
+            if let typed = navVC.visibleViewController as? Type {
+                return typed
+            }
+        }
+        return nil
+    }
+}
