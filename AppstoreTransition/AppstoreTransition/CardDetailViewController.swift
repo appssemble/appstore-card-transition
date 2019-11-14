@@ -104,7 +104,11 @@ public final class CardDismissHandler: NSObject {
     
     var interactiveStartingPoint: CGPoint?
     var dismissalAnimator: UIViewPropertyAnimator?
-    var draggingDownToDismiss = false
+    var draggingDownToDismiss = false {
+        didSet {
+            print("changed draggingDownToDismiss \(self.draggingDownToDismiss)")
+        }
+    }
     
     private let source: CardDetailViewController
     
@@ -151,6 +155,7 @@ public final class CardDismissHandler: NSObject {
         
         // Don't do anything when it's not in the drag down mode
         if canStartDragDownToDismissPan {
+            print("error: canStartDragDownToDismissPan")
             return
         }
         
@@ -295,7 +300,8 @@ public final class CardDismissHandler: NSObject {
         if (source.settings.isEnabledBottomClose) {
             return source.scrollView.contentOffset.y <= 0 || source.scrollView.contentOffset.y >= source.scrollView.contentSize.height - source.scrollView.frame.height
         } else {
-            return source.scrollView.contentOffset.y <= -source.scrollView.contentInset.top
+            print("source.scrollView.contentOffset.y \(source.scrollView.contentOffset.y)")
+            return source.scrollView.contentOffset.y <= 0
         }
     }
     
