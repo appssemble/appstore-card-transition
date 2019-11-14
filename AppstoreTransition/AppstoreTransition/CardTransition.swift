@@ -25,6 +25,8 @@ public class TransitionSettings {
     /// Swipe from bottom should also closes the detail screen.
     public var isEnabledBottomClose = false
     
+    public var isEnabledEdgeClose = false
+    
     /// If true, will draw borders on animating views.
     public var isEnabledDebugAnimatingViews = false
     

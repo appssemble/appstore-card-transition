@@ -35,7 +35,7 @@ public protocol CardDetailViewController: UIViewController {
 
 public extension CardDetailViewController {
     
-    var dismissHandler:CardDismissHandler {
+    var dismissHandler: CardDismissHandler {
         get {
             if let settings = objc_getAssociatedObject(self, &AssociatedKeys.dismissHandlerKey) as? CardDismissHandler {
                 return settings
@@ -49,7 +49,7 @@ public extension CardDetailViewController {
         }
     }
     
-    var settings:TransitionSettings {
+    var settings: TransitionSettings {
         get {
             if let settings = objc_getAssociatedObject(self, &AssociatedKeys.settingsKey) as? TransitionSettings {
                 return settings
@@ -117,12 +117,14 @@ public final class CardDismissHandler: NSObject {
         dismissalPanGesture.addTarget(self, action: #selector(handleDismissalPan(gesture:)))
         dismissalPanGesture.delegate = self
         
-//        dismissalScreenEdgePanGesture.addTarget(self, action: #selector(handleDismissalPan(gesture:)))
-//        dismissalScreenEdgePanGesture.delegate = self
-//        
-//        // Make drag down/scroll pan gesture waits til screen edge pan to fail first to begin
-//        dismissalPanGesture.require(toFail: dismissalScreenEdgePanGesture)
-//        source.scrollView.panGestureRecognizer.require(toFail: dismissalScreenEdgePanGesture)
+        if source.settings.isEnabledEdgeClose {
+            dismissalScreenEdgePanGesture.addTarget(self, action: #selector(handleDismissalPan(gesture:)))
+            dismissalScreenEdgePanGesture.delegate = self
+            
+            // Make drag down/scroll pan gesture waits til screen edge pan to fail first to begin
+            dismissalPanGesture.require(toFail: dismissalScreenEdgePanGesture)
+            source.scrollView.panGestureRecognizer.require(toFail: dismissalScreenEdgePanGesture)
+        }
         
         source.loadViewIfNeeded()
         source.view.addGestureRecognizer(dismissalPanGesture)
@@ -148,7 +150,9 @@ public final class CardDismissHandler: NSObject {
         let canStartDragDownToDismissPan = !isScreenEdgePan && !draggingDownToDismiss
         
         // Don't do anything when it's not in the drag down mode
-        if canStartDragDownToDismissPan { return }
+        if canStartDragDownToDismissPan {
+            return
+        }
         
         let targetAnimatedView = gesture.view!
         let startingPoint: CGPoint
@@ -191,7 +195,7 @@ public final class CardDismissHandler: NSObject {
         switch gesture.state {
         case .began:
             
-            if (source.scrollView.contentOffset.y <= 0) {
+            if (source.scrollView.contentOffset.y <= -source.scrollView.contentOffset.top) {
                 dismissTop = true
             } else if (source.scrollView.contentOffset.y >= source.scrollView.contentSize.height - source.scrollView.frame.height && source.settings.isEnabledBottomClose) {
                 dismissTop = false
@@ -199,6 +203,7 @@ public final class CardDismissHandler: NSObject {
             
             dismissalAnimator = createInteractiveDismissalAnimatorIfNeeded()
             source.didBeginDismissAnimation()
+            
         case .changed:
             dismissalAnimator = createInteractiveDismissalAnimatorIfNeeded()
             
@@ -290,7 +295,7 @@ public final class CardDismissHandler: NSObject {
         if (source.settings.isEnabledBottomClose) {
             return source.scrollView.contentOffset.y <= 0 || source.scrollView.contentOffset.y >= source.scrollView.contentSize.height - source.scrollView.frame.height
         } else {
-            return source.scrollView.contentOffset.y <= 0
+            return source.scrollView.contentOffset.y <= -source.scrollView.contentOffset.top
         }
     }
     
