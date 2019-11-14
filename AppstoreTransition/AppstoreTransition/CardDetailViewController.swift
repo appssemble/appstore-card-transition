@@ -69,6 +69,7 @@ public extension CardDetailViewController {
         }
         
         set {
+            print("dismissEnabled \(dismissEnabled)")
             dismissHandler.dismissalPanGesture.isEnabled = newValue
             dismissHandler.dismissalScreenEdgePanGesture.isEnabled = newValue
         }
@@ -149,6 +150,7 @@ public final class CardDismissHandler: NSObject {
         
         let velocity = gesture.velocity(in: source.view)
         //if velocity.y > 0 { return }
+        print("handleDismissalPan velocity \(velocity)")
         
         let isScreenEdgePan = gesture.isKind(of: DismissalScreenEdgePanGesture.self)
         let canStartDragDownToDismissPan = !isScreenEdgePan && !draggingDownToDismiss
@@ -178,7 +180,8 @@ public final class CardDismissHandler: NSObject {
         } else {
             progress = isScreenEdgePan ? (gesture.translation(in: targetAnimatedView).x / 100) : (startingPoint.y - currentLocation.y) / 100
         }
-        
+        print("startingPoint \(startingPoint), currentLocation \(currentLocation), progress \(progress)")
+
         let targetShrinkScale: CGFloat = 0.86
         let targetCornerRadius: CGFloat = source.settings.cardCornerRadius
         
@@ -205,16 +208,18 @@ public final class CardDismissHandler: NSObject {
             } else if (source.scrollView.contentOffset.y >= source.scrollView.contentSize.height - source.scrollView.frame.height && source.settings.isEnabledBottomClose) {
                 dismissTop = false
             }
-            
+            print("began didBeginDismissAnimation")
+
             dismissalAnimator = createInteractiveDismissalAnimatorIfNeeded()
             source.didBeginDismissAnimation()
             
         case .changed:
             dismissalAnimator = createInteractiveDismissalAnimatorIfNeeded()
-            
+
             let actualProgress = progress
             let isDismissalSuccess = actualProgress >= 1.0
-            
+            print("changed isDismissalSuccess \(isDismissalSuccess)")
+
             dismissalAnimator!.fractionComplete = actualProgress
             if progress >= 0 && progress <= 1 && dismissTop {
 //                source.scrollView.contentOffset = .zero //CGPoint(x: 0, y: 100 * max(progress, 0))
@@ -235,6 +240,7 @@ public final class CardDismissHandler: NSObject {
             }
             
         case .ended, .cancelled:
+            print("ended or cancelled")
             if dismissalAnimator == nil {
                 // Gesture's too quick that it doesn't have dismissalAnimator!
                 print("Too quick there's no animator!")
@@ -275,6 +281,7 @@ public final class CardDismissHandler: NSObject {
     func didSuccessfullyDragDownToDismiss() {
         //cardViewModel = unhighlightedCardViewModel
         //source.dismiss(animated: true)
+        print("didSuccessfullyDragDownToDismiss")
         self.source.didStartDismissAnimation()
         source.dismiss(animated: true) {
             self.source.didFinishDismissAnimation()
@@ -282,6 +289,7 @@ public final class CardDismissHandler: NSObject {
     }
     
     func didCancelDismissalTransition() {
+        print("didCancelDismissalTransition")
         // Clean up
         interactiveStartingPoint = nil
         dismissalAnimator = nil
@@ -292,7 +300,7 @@ public final class CardDismissHandler: NSObject {
         if (shouldDismiss()) {
             draggingDownToDismiss = true
         }
-        
+        print("checkScrolling draggingDownToDismiss \(draggingDownToDismiss)")
         scrollView.showsVerticalScrollIndicator = !draggingDownToDismiss
     }
     

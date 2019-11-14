@@ -24,6 +24,7 @@ final class CardPresentationController: UIPresentationController {
     }
     
     override func presentationTransitionWillBegin() {
+        print("presentationTransitionWillBegin")
         let container = containerView!
         blurView.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(blurView)
@@ -45,10 +46,12 @@ final class CardPresentationController: UIPresentationController {
     }
     
     override func presentationTransitionDidEnd(_ completed: Bool) {
+        print("presentationTransitionDidEnd")
         presentingViewController.endAppearanceTransition()
     }
     
     override func dismissalTransitionWillBegin() {
+        print("dismissalTransitionWillBegin")
         presentingViewController.beginAppearanceTransition(true, animated: true)
         presentedViewController.transitionCoordinator!.animate(alongsideTransition: { (ctx) in
             self.blurView.alpha = 0.0
@@ -56,6 +59,7 @@ final class CardPresentationController: UIPresentationController {
     }
     
     override func dismissalTransitionDidEnd(_ completed: Bool) {
+        print("dismissalTransitionDidEnd")
         presentingViewController.endAppearanceTransition()
         if completed {
             blurView.removeFromSuperview()
