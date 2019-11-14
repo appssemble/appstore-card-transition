@@ -195,7 +195,7 @@ public final class CardDismissHandler: NSObject {
         switch gesture.state {
         case .began:
             
-            if (source.scrollView.contentOffset.y <= -source.scrollView.contentOffset.top) {
+            if (source.scrollView.contentOffset.y <= -source.scrollView.contentInset.top) {
                 dismissTop = true
             } else if (source.scrollView.contentOffset.y >= source.scrollView.contentSize.height - source.scrollView.frame.height && source.settings.isEnabledBottomClose) {
                 dismissTop = false
@@ -295,7 +295,7 @@ public final class CardDismissHandler: NSObject {
         if (source.settings.isEnabledBottomClose) {
             return source.scrollView.contentOffset.y <= 0 || source.scrollView.contentOffset.y >= source.scrollView.contentSize.height - source.scrollView.frame.height
         } else {
-            return source.scrollView.contentOffset.y <= -source.scrollView.contentOffset.top
+            return source.scrollView.contentOffset.y <= -source.scrollView.contentInset.top
         }
     }
     
