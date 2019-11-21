@@ -186,3 +186,15 @@ Checkout the demo project to see some examples of what the library can do and ho
 We're aware that this is far from perfect so any improvement or feature is welcomed. If you made an awesome change don't hesitate to create a pull request.
 
 This project is inspired from [this project](https://github.com/aunnnn/AppStoreiOS11InteractiveTransition)
+
+## Let us help you
+
+Do you need help with your app development? [Drop us a line](https://appssemble.com)
+
+
+
+<p align="center">
+    </br>
+    </br>
+    <img src="https://www.appssemble.com/img/appssemble-black.png" height="40" />
+</p>
