@@ -37,8 +37,6 @@ class Type1ViewController: UIViewController {
         
         positionHeaderView()
         
-        tableView.contentOffset = CGPoint(x: 0, y: 50)
-        
         headerView.topContainerView.backgroundColor = UIColor(named: "type1color")
         if let subtitle = subtitle {
             headerView.subtitleLabel.text = subtitle
@@ -54,6 +52,7 @@ class Type1ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        headerView.topContainerHeight?.constant = UIScreen.main.bounds.width * 1.272 - 66.0
         positionHeaderView()
     }
     
@@ -109,7 +108,7 @@ extension Type1ViewController: CardDetailViewController {
     }
     
     func didBeginDismissAnimation() {
-       // tableView.setContentOffset(.zero, animated: true)
+        tableView.setContentOffset(.zero, animated: true)
     }
     
     func didFinishDismissAnimation() {

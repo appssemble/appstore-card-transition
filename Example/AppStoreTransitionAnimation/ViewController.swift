@@ -101,7 +101,6 @@ extension ViewController: UICollectionViewDelegate {
         // Get tapped cell location
         let cell = collectionView.cellForItem(at: indexPath) as! CardCollectionViewCell
         
-        cell.settings.dismissalScrollViewContentOffset = CGPoint(x: 0, y: 50)
         cell.settings.isEnabledBottomClose = bottomDismiss
         cell.settings.cardContainerInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 0, right: 8.0)
         
@@ -153,7 +152,6 @@ extension ViewController: UICollectionViewDelegate {
         // Get tapped cell location
         let cell = collectionView.cellForItem(at: indexPath) as! CardCollectionViewCell
         
-        cell.settings.dismissalScrollViewContentOffset = CGPoint(x: 0, y: 50)
         cell.settings.isEnabledBottomClose = bottomDismiss
         cell.settings.cardContainerInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 0, right: 8.0)
         

@@ -14,6 +14,7 @@ class Type2ViewController: UIViewController {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     
     var subtitle: String? = nil
     var background: UIImage? = nil
@@ -24,6 +25,8 @@ class Type2ViewController: UIViewController {
         view.clipsToBounds = true
         contentScrollView.delegate = self
         
+        scrollView.contentInsetAdjustmentBehavior = .never
+        
         let _ = dismissHandler
         if let subtitle = subtitle {
             subtitleLabel.text = subtitle
@@ -31,6 +34,8 @@ class Type2ViewController: UIViewController {
         if let background = background {
             backgroundImage.image = background
         }
+        
+        heightConstraint.constant = UIScreen.main.bounds.width * 1.272 - 16.0
     }
 
 }
