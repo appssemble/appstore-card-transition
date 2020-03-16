@@ -8,6 +8,22 @@
 
 import UIKit
 
+extension UIViewController {
+    
+    func cardsViewController() -> CardsViewController? {
+        if let viewController = self as? CardsViewController {
+            return viewController
+        } else if let viewController = self as? UITabBarController {
+            return viewController.selectedViewController?.cardsViewController()
+        } else if let viewController = self as? UINavigationController {
+            return viewController.topViewController?.cardsViewController()
+        }
+        
+        return nil
+    }
+    
+}
+
 final class PresentCardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
     private let params: Params
@@ -75,14 +91,7 @@ final class PresentCardTransitionDriver {
     init(params: PresentCardAnimator.Params, transitionContext: UIViewControllerContextTransitioning, baseAnimator: UIViewPropertyAnimator) {
         let ctx = transitionContext
         let container = ctx.containerView
-        var fromViewController: CardsViewController! = nil
-        if let viewController = ctx.viewController(forKey: .from) as? CardsViewController {
-            fromViewController = viewController
-        } else if let viewController = ctx.viewController(forKey: .from) as? UITabBarController, let cardViewController = viewController.selectedViewController as? CardsViewController {
-            fromViewController = cardViewController
-        } else if let viewController = ctx.viewController(forKey: .from) as? UINavigationController, let cardViewController = viewController.topViewController as? CardsViewController {
-            fromViewController = cardViewController
-        }
+        var fromViewController: CardsViewController! = ctx.viewController(forKey: .from)?.cardsViewController()
         
         let screens: (home: CardsViewController, cardDetail: CardDetailViewController) = (
             fromViewController,

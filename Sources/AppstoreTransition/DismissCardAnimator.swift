@@ -37,14 +37,7 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
         let ctx = transitionContext
         let container = ctx.containerView
         
-        var toViewController: CardsViewController! = nil
-        if let viewController = ctx.viewController(forKey: .to) as? CardsViewController {
-            toViewController = viewController
-        } else if let viewController = ctx.viewController(forKey: .to) as? UITabBarController, let cardViewController = viewController.selectedViewController as? CardsViewController {
-            toViewController = cardViewController
-        } else if let viewController = ctx.viewController(forKey: .to) as? UINavigationController, let cardViewController = viewController.topViewController as? CardsViewController {
-            toViewController = cardViewController
-        }
+        var toViewController: CardsViewController! = ctx.viewController(forKey: .to)?.cardsViewController()
         
         let screens: (cardDetail: CardDetailViewController, home: CardsViewController) = (
             ctx.viewController(forKey: .from)! as! CardDetailViewController,
