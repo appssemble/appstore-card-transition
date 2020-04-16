@@ -13,7 +13,7 @@ private struct AssociatedKeys {
     static var disabledHighlightedAnimationKey: UInt8 = 0
 }
 
-public protocol CardCollectionViewCell: UICollectionViewCell {
+public protocol CardCollectionViewCell: UIView {
     var cardContentView: UIView { get }
     var disabledHighlightedAnimation: Bool { get set }
     var settings: TransitionSettings { get }
