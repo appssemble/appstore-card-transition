@@ -128,7 +128,7 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
         UIView.animate(withDuration: transitionDuration(using: ctx) * 0.4) {
             //print("godam")
             //screens.cardDetail.scrollView.setContentOffset(self.params.settings.dismissalScrollViewContentOffset, animated: true)
-            screens.cardDetail.scrollView.contentOffset = self.params.settings.dismissalScrollViewContentOffset
+            screens.cardDetail.scrollView?.contentOffset = self.params.settings.dismissalScrollViewContentOffset
         }
     }
 }

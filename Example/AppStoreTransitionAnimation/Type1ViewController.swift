@@ -99,7 +99,7 @@ extension Type1ViewController: CardDetailViewController {
         return headerView
     }
     
-    var scrollView: UIScrollView {
+    var scrollView: UIScrollView? {
         return tableView
     }
     

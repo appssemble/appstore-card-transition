@@ -207,7 +207,7 @@ final class PresentCardTransitionDriver {
             
             // No longer need the bottom constraint that pins bottom of card content to its root.
             //screens.cardDetail.cardBottomToRootBottomConstraint.isActive = false
-            screens.cardDetail.scrollView.isScrollEnabled = true
+            screens.cardDetail.scrollView?.isScrollEnabled = true
             
             let success = !ctx.transitionWasCancelled
             ctx.completeTransition(success)

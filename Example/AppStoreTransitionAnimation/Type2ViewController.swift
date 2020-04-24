@@ -25,7 +25,7 @@ class Type2ViewController: UIViewController {
         view.clipsToBounds = true
         contentScrollView.delegate = self
         
-        scrollView.contentInsetAdjustmentBehavior = .never
+        scrollView?.contentInsetAdjustmentBehavior = .never
         
         let _ = dismissHandler
         if let subtitle = subtitle {
@@ -53,7 +53,7 @@ extension Type2ViewController: UIScrollViewDelegate {
 
 extension Type2ViewController: CardDetailViewController {
     
-    var scrollView: UIScrollView {
+    var scrollView: UIScrollView? {
         return contentScrollView
     }
     

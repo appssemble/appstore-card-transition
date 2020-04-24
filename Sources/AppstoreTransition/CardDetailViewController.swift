@@ -19,7 +19,7 @@ public protocol CardsViewController {
 
 public protocol CardDetailViewController: UIViewController {
     var cardContentView: UIView { get }
-    var scrollView: UIScrollView { get }
+    var scrollView: UIScrollView? { get }
     var settings: TransitionSettings { get set }
     var dismissHandler: CardDismissHandler { get }
     
@@ -122,7 +122,7 @@ public final class CardDismissHandler: NSObject {
         
         // Make drag down/scroll pan gesture waits til screen edge pan to fail first to begin
         dismissalPanGesture.require(toFail: dismissalScreenEdgePanGesture)
-        source.scrollView.panGestureRecognizer.require(toFail: dismissalScreenEdgePanGesture)
+        source.scrollView?.panGestureRecognizer.require(toFail: dismissalScreenEdgePanGesture)
         
         source.loadViewIfNeeded()
         source.view.addGestureRecognizer(dismissalPanGesture)
@@ -191,10 +191,14 @@ public final class CardDismissHandler: NSObject {
         switch gesture.state {
         case .began:
             
-            if (source.scrollView.contentOffset.y <= 0) {
+            if let scrollView = source.scrollView {
+                if (scrollView.contentOffset.y <= 0) {
+                    dismissTop = true
+                } else if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.height && source.settings.isEnabledBottomClose) {
+                    dismissTop = false
+                }
+            } else {
                 dismissTop = true
-            } else if (source.scrollView.contentOffset.y >= source.scrollView.contentSize.height - source.scrollView.frame.height && source.settings.isEnabledBottomClose) {
-                dismissTop = false
             }
             
             dismissalAnimator = createInteractiveDismissalAnimatorIfNeeded()
@@ -207,7 +211,7 @@ public final class CardDismissHandler: NSObject {
             
             dismissalAnimator!.fractionComplete = actualProgress
             if progress >= 0 && progress <= 1 && dismissTop {
-                source.scrollView.contentOffset = CGPoint(x: 0, y: 100 * max(progress, 0))
+                source.scrollView?.contentOffset = CGPoint(x: 0, y: 100 * max(progress, 0))
             }
             source.didChangeDismissAnimationProgress(progress: progress)
             
@@ -256,10 +260,10 @@ public final class CardDismissHandler: NSObject {
         }
         
         do {
-            self.lastContentOffset = source.scrollView.contentOffset.y
+            self.lastContentOffset = source.scrollView?.contentOffset.y ?? 0
         }
         
-        source.scrollView.bounces = source.scrollView.contentOffset.y > 100
+        source.scrollView?.bounces = (source.scrollView?.contentOffset.y ?? 0) > 100
     }
     
     func didSuccessfullyDragDownToDismiss() {
@@ -278,19 +282,21 @@ public final class CardDismissHandler: NSObject {
         draggingDownToDismiss = false
     }
     
-    private func checkScrolling(scrollView: UIScrollView) {
+    private func checkScrolling(scrollView: UIScrollView?) {
         if (shouldDismiss()) {
             draggingDownToDismiss = true
         }
         
-        scrollView.showsVerticalScrollIndicator = !draggingDownToDismiss
+        scrollView?.showsVerticalScrollIndicator = !draggingDownToDismiss
     }
     
     func shouldDismiss() -> Bool {
+        guard let scrollView = source.scrollView else { return true }
+        
         if (source.settings.isEnabledBottomClose) {
-            return source.scrollView.contentOffset.y <= 0 || source.scrollView.contentOffset.y >= source.scrollView.contentSize.height - source.scrollView.frame.height
+            return scrollView.contentOffset.y <= 0 || scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.height
         } else {
-            return source.scrollView.contentOffset.y <= 0
+            return scrollView.contentOffset.y <= 0
         }
     }
     
