@@ -100,7 +100,7 @@ extension Type1ViewController: CardDetailViewController {
     }
     
     var scrollView: UIScrollView? {
-        return tableView
+        return nil
     }
     
     func didStartPresentAnimationProgress() {

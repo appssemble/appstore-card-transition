@@ -157,7 +157,7 @@ final class PresentCardTransitionDriver {
             NSLayoutConstraint.activate(cardConstraints)
         }
         let cardWidthConstraint = cardDetailView.widthAnchor.constraint(equalToConstant: fromCardFrame.width - (params.settings.cardContainerInsets.left + params.settings.cardContainerInsets.right))
-        let cardHeightConstraint = cardDetailView.heightAnchor.constraint(equalToConstant: fromCardFrame.height - (params.settings.cardContainerInsets.top + params.settings.cardContainerInsets.bottom))
+        let cardHeightConstraint = cardDetailView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height - (params.settings.cardContainerInsets.top + params.settings.cardContainerInsets.bottom))
         NSLayoutConstraint.activate([cardWidthConstraint, cardHeightConstraint])
         
         cardDetailView.layer.cornerRadius = params.settings.cardCornerRadius
@@ -221,7 +221,7 @@ final class PresentCardTransitionDriver {
             animateContainerBouncingUp()
             
             // Linear animation for expansion
-            let cardExpanding = UIViewPropertyAnimator(duration: baseAnimator.duration * 0.6, curve: .linear) {
+            let cardExpanding = UIViewPropertyAnimator(duration: 0, curve: .linear) {
                 animateCardDetailViewSizing()
             }
             cardExpanding.startAnimation()

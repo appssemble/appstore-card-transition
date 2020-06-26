@@ -178,7 +178,7 @@ public final class CardDismissHandler: NSObject {
                 return animator
             } else {
                 let animator = UIViewPropertyAnimator(duration: 0, curve: .linear, animations: {
-                    targetAnimatedView.transform = .init(scaleX: targetShrinkScale, y: targetShrinkScale)
+                    //targetAnimatedView.transform = .init(scaleX: targetShrinkScale, y: targetShrinkScale)
                     targetAnimatedView.layer.cornerRadius = targetCornerRadius
                 })
                 animator.isReversed = false
