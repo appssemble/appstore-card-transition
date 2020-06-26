@@ -119,13 +119,13 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
             ctx.completeTransition(success)
         }
         
-        UIView.animate(withDuration: transitionDuration(using: ctx), delay: 0, animations: {
+        UIView.animate(withDuration: transitionDuration(using: ctx) * 0.25, delay: 0, animations: {
             animateCardViewBackToPlace()
         }) { (finished) in
             completeEverything()
         }
         
-        UIView.animate(withDuration: transitionDuration(using: ctx) * 0.4) {
+        UIView.animate(withDuration: transitionDuration(using: ctx) * 0.3) {
             //print("godam")
             //screens.cardDetail.scrollView.setContentOffset(self.params.settings.dismissalScrollViewContentOffset, animated: true)
             screens.cardDetail.scrollView?.contentOffset = self.params.settings.dismissalScrollViewContentOffset
