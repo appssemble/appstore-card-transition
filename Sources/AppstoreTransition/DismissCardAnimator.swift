@@ -119,7 +119,7 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
             ctx.completeTransition(success)
         }
         
-        UIView.animate(withDuration: transitionDuration(using: ctx), delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: [], animations: {
+        UIView.animate(withDuration: transitionDuration(using: ctx), delay: 0, animations: {
             animateCardViewBackToPlace()
         }) { (finished) in
             completeEverything()
