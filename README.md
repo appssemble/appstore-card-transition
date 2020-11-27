@@ -196,5 +196,5 @@ Do you need help with your app development? [Drop us a line](https://appssemble.
 <p align="center">
     </br>
     </br>
-    <img src="https://www.appssemble.com/img/appssemble-black.png" height="40" />
+    <img src="https://www.appssemble.com/assets/img/logo-appssemble.png" height="40" />
 </p>
