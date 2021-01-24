@@ -91,7 +91,7 @@ final class PresentCardTransitionDriver {
     init(params: PresentCardAnimator.Params, transitionContext: UIViewControllerContextTransitioning, baseAnimator: UIViewPropertyAnimator) {
         let ctx = transitionContext
         let container = ctx.containerView
-        var fromViewController: CardsViewController! = ctx.viewController(forKey: .from)?.cardsViewController()
+        let fromViewController: CardsViewController! = ctx.viewController(forKey: .from)?.cardsViewController()
         
         let screens: (home: CardsViewController, cardDetail: CardDetailViewController) = (
             fromViewController,
@@ -138,8 +138,6 @@ final class PresentCardTransitionDriver {
         
         animatedContainerView.addSubview(cardDetailView)
         cardDetailView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let weirdCardToAnimatedContainerTopAnchor: NSLayoutConstraint
         
         do /* Pin top (or center Y) and center X of the card, in animated container view */ {
             let verticalAnchor: NSLayoutConstraint = {

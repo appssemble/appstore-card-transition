@@ -141,7 +141,7 @@ public final class CardDismissHandler: NSObject {
     // This handles both screen edge and dragdown pan. As screen edge pan is a subclass of pan gesture, this input param works.
     @objc func handleDismissalPan(gesture: UIPanGestureRecognizer) {
         
-        let velocity = gesture.velocity(in: source.view)
+//        let velocity = gesture.velocity(in: source.view)
         //if velocity.y > 0 { return }
         
         let isScreenEdgePan = gesture.isKind(of: DismissalScreenEdgePanGesture.self)
